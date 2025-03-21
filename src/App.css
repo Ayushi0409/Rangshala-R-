@@ -1,42 +1,311 @@
+/* Reset and Base Styles */
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
+/* Common Styles */
 a {
   text-decoration: none;
   color: inherit;
 }
 
 h1, h2, h3 {
-  margin-bottom: 10px;
+  margin: 0;
 }
 
 p {
+  margin: 0;
   line-height: 1.6;
 }
 
-/* Hover effects for artist photos */
-img[alt="Niyati Agravat"],
-img[alt="Ayushi Babariya"] {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Section Header (Used in Category Pages) */
+.section-header {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-img[alt="Niyati Agravat"]:hover,
-img[alt="Ayushi Babariya"]:hover {
+.section-header .line {
+  display: inline-block;
+  width: 80px;
+  height: 3px;
+  background-color: #333;
+  margin: 0 auto 10px;
+}
+
+.section-header h2 {
+  font-size: 2.5em;
+  color: #333;
+}
+
+/* Artwork Card (Shared across Artwork Categories and Category Pages) */
+.artwork-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s, border-width 0.3s, border-color 0.3s, width 0.3s, height 0.3s;
+  position: relative;
+}
+
+/* Artwork Categories Section (Horizontal Slider) */
+.artwork-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.artwork-section h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.artwork-section .artwork-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+.artwork-section .artwork-card {
+  border: 2px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  height: 300px; /* Adjusted for artist name, painting name, and price */
+}
+
+.artwork-section .artwork-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-  border-color: #153448;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  border-color: black;
+  border-width: 5px;
+  width: 220px;
+  height: 320px;
 }
 
-/* Navigation links hover effect */
-nav a:hover {
+.artwork-section .artwork-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-bottom: 2px solid #ddd;
+}
+
+.artwork-section .artwork-card a {
   color: #007bff;
+  font-weight: bold;
+  display: block;
+  margin: 10px 0;
+  transition: color 0.3s;
 }
 
-/* Explore button hover effect */
-a[style*="backgroundColor: '#153448'"]:hover {
-  background-color: #007bff !important;
+.artwork-section .artwork-card a:hover {
+  color: #0056b3;
+}
+
+.artwork-section .artwork-card h3 {
+  font-size: 1em;
+  margin: 5px 0;
+  color: #333;
+}
+
+.artwork-section .artwork-card p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.artwork-section .artwork-card p:last-child {
+  font-weight: bold;
+  color: #000;
+}
+
+.artwork-section .artwork-card .artist-name {
+  font-style: italic;
+  color: #555;
+}
+
+.artwork-section .view-all-button {
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-top: 20px;
+  width: 200px;
+  text-align: center;
+}
+
+.artwork-section .view-all-button:hover {
+  background-color: #333;
+  transform: scale(1.1);
+}
+
+/* Category Pages (Anime, Acrylic Paintings, Drawings, Mandala Art, Oil Painting) */
+.acrylic-painting-section {
+  padding: 40px 20px;
+  text-align: left;
+}
+
+.acrylic-painting-section .artwork-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.acrylic-painting-section .artwork-card {
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  margin: auto;
+}
+
+.acrylic-painting-section .artwork-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.acrylic-painting-section .artwork-card img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+.acrylic-painting-section .artwork-card h3 {
+  font-size: 1.2em;
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+.acrylic-painting-section .artwork-card p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.acrylic-painting-section .artwork-card p:last-child {
+  font-weight: bold;
+  color: #000;
+}
+
+.acrylic-painting-section .artwork-card .artist-name {
+  font-style: italic;
+  color: #555;
+}
+
+/* Overlay for Category Pages */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.artwork-card:hover .overlay {
+  opacity: 1;
+}
+
+.overlay button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.overlay button:hover {
+  background-color: white;
+  color: black;
+}
+
+.overlay .view-btn {
+  background-color: #ccc;
+  color: #000;
+}
+
+.overlay .view-btn:hover {
+  background-color: #666;
+  color: #fff;
+}
+
+/* Artwork Detail Page */
+.artwork-detail-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.artwork-image {
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.artwork-info {
+  margin-left: 40px;
+}
+
+.artwork-info h1 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.artwork-info h3 {
+  font-size: 1.5em;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.size-tag {
+  background-color: black;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.price {
+  font-size: 1.8em;
+  color: black;
+  font-weight: bold;
+}
+
+.back-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background-color: #444;
 }

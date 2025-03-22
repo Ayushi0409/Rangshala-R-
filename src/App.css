@@ -42,6 +42,15 @@ p {
   line-height: 1.6;
 }
 
+/* Reusable Decorative Line */
+.decorative-line {
+  width: 80px;
+  height: 4px;
+  background-color: #153448;
+  border-radius: 2px;
+  margin: 10px 0 30px;
+}
+
 /* Header */
 .header {
   background-color: #fff;
@@ -214,14 +223,7 @@ p {
 
 .why-rangshala-section h1.section-title {
   font-size: 40px;
-  margin-bottom: 10px;
-}
-
-.why-rangshala-section .decorative-line {
-  width: 80px;
-  height: 4px;
-  background-color: #153448;
-  margin: 0 auto 30px;
+  margin-bottom: 0;
 }
 
 .why-rangshala-section .content {
@@ -251,7 +253,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 200px; /* Adjusted gap to match screenshot */
+  gap: 60px; /* Reduced gap for better alignment */
   padding-top: 20px;
 }
 
@@ -262,7 +264,7 @@ p {
 }
 
 .why-rangshala-section .why-item img {
-  max-width: 50px; /* Smaller image size to match screenshot */
+  max-width: 60px; /* Adjusted image size */
   height: auto;
   margin-bottom: 15px;
 }
@@ -293,7 +295,7 @@ p {
 }
 
 .section-header h2 {
-  font-size: 40px; /* 2.5em = 40px at 16px base */
+  font-size: 40px;
 }
 
 /* Artwork Card (Shared across Artwork Categories and Category Pages) */
@@ -329,7 +331,7 @@ p {
   border: 2px solid #ddd;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 200px;
-  height: 300px; /* Adjusted for artist name, painting name, and price */
+  height: 300px;
 }
 
 .artwork-section .artwork-card:hover {
@@ -362,13 +364,13 @@ p {
 }
 
 .artwork-section .artwork-card h3 {
-  font-size: 16px; /* 1em = 16px at 16px base */
+  font-size: 16px;
   margin: 5px 0;
 }
 
 .artwork-section .artwork-card p {
   margin: 5px 0;
-  font-size: 14px; /* 0.9em = 14px at 16px base */
+  font-size: 14px;
 }
 
 .artwork-section .artwork-card p:last-child {
@@ -420,7 +422,7 @@ p {
   border: 1px solid #ddd;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 300px;
-  height: 400px; /* Adjusted for image, name, artist, and price */
+  height: 400px;
   margin: 0 auto;
 }
 
@@ -437,13 +439,13 @@ p {
 }
 
 .acrylic-painting-section .artwork-card h3 {
-  font-size: 19px; /* 1.2em = 19px at 16px base */
+  font-size: 19px;
   margin: 10px 0 5px;
 }
 
 .acrylic-painting-section .artwork-card p {
   margin: 5px 0;
-  font-size: 14px; /* 0.9em = 14px at 16px base */
+  font-size: 14px;
 }
 
 .acrylic-painting-section .artwork-card p:last-child {
@@ -526,12 +528,12 @@ p {
 }
 
 .artwork-info h1 {
-  font-size: 32px; /* 2em = 32px at 16px base */
+  font-size: 32px;
   margin-bottom: 10px;
 }
 
 .artwork-info h3 {
-  font-size: 24px; /* 1.5em = 24px at 16px base */
+  font-size: 24px;
   color: #555;
   margin-bottom: 5px;
 }
@@ -547,7 +549,7 @@ p {
 }
 
 .price {
-  font-size: 28px; /* 1.8em = 28px at 16px base */
+  font-size: 28px;
   color: black;
   font-weight: bold;
 }
@@ -582,15 +584,7 @@ p {
 
 .featured-artist-section h1 {
   font-size: 40px;
-  margin-bottom: 20px;
-}
-
-.decorative-line {
-  width: 100px;
-  height: 4px;
-  background-color: #153448;
-  border-radius: 2px;
-  margin-bottom: 5px;
+  margin-bottom: 0;
 }
 
 .artist-grid {
@@ -607,7 +601,7 @@ p {
   text-align: center;
   padding: 20px;
   width: 250px;
-  height: 350px; /* Adjusted for image, name, and button */
+  height: 350px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -627,7 +621,7 @@ p {
 }
 
 .artist-card h3 {
-  font-size: 19px; /* 1.2em = 19px at 16px base */
+  font-size: 19px;
   margin-bottom: 10px;
 }
 
@@ -783,7 +777,7 @@ p {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-.artist-image {
+.artist-card .artist-image {
   width: 100%;
   height: 250px;
   object-fit: cover;
@@ -886,20 +880,20 @@ p {
   display: inline-block;
   padding-bottom: 5px;
   text-align: left;
-  margin-left: -50px; /* Moves the title further left */
+  margin-left: -50px;
 }
 
 .bespoke-container .why-rangshala-section {
   text-align: left;
   margin-bottom: 50px;
-  margin-left: -50px; /* Moves the entire section further left */
+  margin-left: -50px;
 }
 
 .bespoke-container .why-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 100px; /* Increased gap between items */
+  gap: 60px; /* Adjusted gap */
 }
 
 .bespoke-container .why-item {
@@ -909,7 +903,7 @@ p {
 }
 
 .bespoke-container .why-item img {
-  max-width: 80px; /* Reduced image size */
+  max-width: 80px;
   height: auto;
   margin-bottom: 15px;
 }
@@ -955,11 +949,11 @@ p {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
-  height: 40px; /* Explicit height for inputs and select */
+  height: 40px;
 }
 
 .form-container textarea {
-  height: 100px; /* Explicit height for textarea */
+  height: 100px;
 }
 
 .form-container button {
@@ -982,7 +976,7 @@ p {
 .image-container {
   flex: 1;
   position: relative;
-  margin-top: 100px; /* Moves the image further down */
+  margin-top: 100px;
 }
 
 .image-container img {
@@ -1024,7 +1018,7 @@ p {
 }
 
 .join-us-form {
-  flex: 1 1 40%; /* Adjusted to ~40% to match screenshot */
+  flex: 1 1 40%;
   background: #fff;
   padding: 30px;
   border-radius: 10px;
@@ -1116,14 +1110,14 @@ p {
 }
 
 .join-us-image {
-  flex: 1 1 55%; /* Adjusted to ~55% to match screenshot */
+  flex: 1 1 55%;
   display: flex;
   align-items: stretch;
 }
 
 .join-us-image img {
   width: 100%;
-  height: 450px; /* Adjusted height to match screenshot */
+  height: 450px;
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -1134,16 +1128,211 @@ p {
   transform: scale(1.02);
 }
 
-/* Responsive Adjustments */
+/* Curator Consult Section */
+.consult-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 50px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.consult-content {
+  flex: 3;
+  margin-right: 40px;
+}
+
+.consult-content .subheading {
+  font-size: 14px; /* Smaller and lighter for "Help with choice and combination" */
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.consult-content h1 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0;
+}
+
+.consult-content p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+  margin: 20px 0;
+}
+
+.consult-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 60px;
+  margin-top: 30px;
+}
+
+.consult-item {
+  text-align: center;
+  flex: 1 1 200px;
+  max-width: 220px;
+}
+
+.consult-item img {
+  width: 60px;
+  height: auto;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.consult-item img:hover {
+  transform: scale(1.05);
+}
+
+.consult-item h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.consult-box {
+  flex: 1;
+  max-width: 350px;
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.consult-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.consult-box h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.consult-box p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.consult-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 15px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  height: 45px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.consult-box input:focus {
+  border-color: #153448;
+  box-shadow: 0 0 5px rgba(21, 52, 72, 0.3);
+  outline: none;
+}
+
+.consult-box .consult-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #153448;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  height: 48px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.consult-box .consult-button:hover {
+  background-color: #1a4a6b;
+  transform: scale(1.02);
+}
+
+.consult-box .note {
+  font-size: 12px;
+  color: #777;
+  margin-top: 15px;
+  line-height: 1.5;
+}
+
+/* How to Begin Collection Section */
+.how-to-collection {
+  background-color: #fff;
+  padding: 60px 50px;
+  color: #333;
+}
+
+.collection-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.collection-container h1 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.collection-step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.collection-step img {
+  width: 60px;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.collection-step img:hover {
+  transform: scale(1.05);
+}
+
+.collection-step h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.collection-step p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.collection-note {
+  font-size: 14px;
+  color: #666;
+  margin-top: 40px;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Consolidated Responsive Adjustments */
 @media (max-width: 1024px) {
-  .artist-grid {
-    gap: 100px;
-  }
-
-  .artist-profile {
-    max-width: 90%;
-  }
-
+  /* Header */
   .nav-icons-container {
     padding: 0 30px;
   }
@@ -1152,18 +1341,17 @@ p {
     gap: 20px;
   }
 
-  /* Bespoke Services Page */
-  .bespoke-container {
+  /* Welcome Section */
+  .welcome-section {
     padding: 40px 30px;
   }
 
-  .bespoke-container .why-row {
-    gap: 60px;
+  .welcome-section h1 {
+    font-size: 40px;
   }
 
-  .image-container img {
-    width: 500px;
-    height: 350px;
+  .welcome-section p {
+    font-size: 18px;
   }
 
   /* Why RangShala Section */
@@ -1178,6 +1366,93 @@ p {
   .why-rangshala-section .why-item {
     flex: 1 1 180px;
     max-width: 200px;
+  }
+
+  .why-rangshala-section .why-item img {
+    max-width: 50px;
+  }
+
+  /* Artwork Categories Section */
+  .artwork-section {
+    padding: 40px 30px;
+  }
+
+  .artwork-section .artwork-card {
+    width: 180px;
+    height: 280px;
+  }
+
+  .artwork-section .artwork-card:hover {
+    width: 200px;
+    height: 300px;
+  }
+
+  /* Category Pages */
+  .acrylic-painting-section {
+    padding: 40px 30px;
+  }
+
+  .acrylic-painting-section .artwork-card {
+    width: 280px;
+    height: 380px;
+  }
+
+  .acrylic-painting-section .artwork-card img {
+    width: 280px;
+    height: 280px;
+  }
+
+  /* Featured Artist Section */
+  .featured-artist-section {
+    padding: 40px 30px;
+  }
+
+  .artist-grid {
+    gap: 100px;
+  }
+
+  /* Artist Profile Pages */
+  .artist-profile {
+    max-width: 90%;
+  }
+
+  /* Artist Page */
+  .artist-page {
+    padding: 40px 30px;
+  }
+
+  .artist-card {
+    width: 280px;
+    height: 430px;
+  }
+
+  .artist-card .artist-image {
+    height: 230px;
+  }
+
+  /* Artwork Detail Page */
+  .artwork-detail-container {
+    padding: 40px 30px;
+    gap: 30px;
+  }
+
+  .artwork-image {
+    width: 350px;
+    height: 350px;
+  }
+
+  /* Bespoke Services Page */
+  .bespoke-container {
+    padding: 40px 30px;
+  }
+
+  .bespoke-container .why-row {
+    gap: 60px;
+  }
+
+  .image-container img {
+    width: 500px;
+    height: 350px;
   }
 
   /* Join Us Section */
@@ -1197,6 +1472,47 @@ p {
 
   .join-us-image img {
     height: 400px;
+  }
+
+  /* Curator Consult Section */
+  .consult-container {
+    padding: 40px 30px;
+    max-width: 100%;
+  }
+
+  .consult-content {
+    flex: 2;
+    margin-right: 30px;
+  }
+
+  .consult-box {
+    max-width: 300px;
+    padding: 20px;
+  }
+
+  .consult-grid {
+    gap: 40px;
+  }
+
+  .consult-item {
+    flex: 1 1 180px;
+    max-width: 200px;
+  }
+
+  .consult-item img {
+    width: 50px;
+  }
+
+  .how-to-collection {
+    padding: 50px 40px;
+  }
+
+  .collection-step {
+    gap: 10px;
+  }
+
+  .collection-step img {
+    width: 50px;
   }
 }
 
@@ -1374,7 +1690,7 @@ p {
     height: 420px;
   }
 
-  .artist-image {
+  .artist-card .artist-image {
     height: 220px;
   }
 
@@ -1475,6 +1791,59 @@ p {
   .join-us-image img {
     height: 350px;
   }
+
+  /* Curator Consult Section */
+  .consult-container {
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 30px;
+  }
+
+  .consult-content {
+    flex: 1;
+    margin-right: 0;
+  }
+
+  .consult-content h1 {
+    font-size: 36px;
+  }
+
+  .consult-box {
+    position: static;
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .consult-box h2 {
+    font-size: 22px;
+  }
+
+  .consult-grid {
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .consult-item {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .consult-item img {
+    width: 50px;
+  }
+
+  .how-to-collection {
+    padding: 40px 30px;
+  }
+
+  .collection-container h1 {
+    font-size: 36px;
+  }
+
+  .collection-step img {
+    width: 50px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1488,7 +1857,8 @@ p {
     font-size: 24px;
   }
 
-  .social-icon, .action-icon {
+  .social-icon,
+  .action-icon {
     font-size: 20px;
   }
 
@@ -1625,7 +1995,7 @@ p {
     height: 400px;
   }
 
-  .artist-image {
+  .artist-card .artist-image {
     height: 200px;
   }
 
@@ -1769,5 +2139,74 @@ p {
 
   .join-us-image img {
     height: 250px;
+  }
+
+  /* Curator Consult Section */
+  .consult-container {
+    padding: 20px 15px;
+  }
+
+  .consult-content h1 {
+    font-size: 28px;
+  }
+
+  .consult-content p {
+    font-size: 14px;
+  }
+
+  .consult-box {
+    padding: 15px;
+  }
+
+  .consult-box h2 {
+    font-size: 20px;
+  }
+
+  .consult-box input {
+    font-size: 13px;
+    height: 40px;
+    padding: 10px;
+  }
+
+  .consult-box .consult-button {
+    font-size: 14px;
+    height: 42px;
+    padding: 10px;
+  }
+
+  .consult-box .note {
+    font-size: 11px;
+  }
+
+  .consult-item img {
+    width: 40px;
+  }
+
+  .consult-item h3 {
+    font-size: 16px;
+  }
+
+  .how-to-collection {
+    padding: 30px 20px;
+  }
+
+  .collection-container h1 {
+    font-size: 28px;
+  }
+
+  .collection-step img {
+    width: 40px;
+  }
+
+  .collection-step h3 {
+    font-size: 18px;
+  }
+
+  .collection-step p {
+    font-size: 13px;
+  }
+
+  .collection-note {
+    font-size: 13px;
   }
 }

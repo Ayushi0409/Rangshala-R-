@@ -18,6 +18,7 @@ import Niyati from './components/Niyati';
 import Bespoke from './components/Bespoke';
 import Artist from './components/Artist';
 import JoinUs from './components/JoinUs';
+import CuratorConsult from './components/CuratorConsult';
 import Footer from './components/Footer';
 import './App.css';
 
@@ -33,8 +34,6 @@ const Home = () => (
 // Placeholder components for routes that are not yet implemented
 const About = () => <h2>About Us Page</h2>;
 <Route path="/artist" element={<Artist />} />
-const Join = () => <h2>Join Us Page</h2>;
-const Consult = () => <h2>Curator Consult Page</h2>;
 const Search = () => <h2>Search Page</h2>;
 const Profile = () => <h2>Profile Page</h2>;
 const Login = () => <h2>Login Page</h2>;
@@ -59,7 +58,7 @@ function App() {
             <Route path="/artist" element={<Artist />} />
             <Route path="/bespoke" element={<Bespoke />} />
             <Route path="/join" element={<JoinUs />} />
-            <Route path="/consult" element={<Consult />} />
+            <Route path="/consult" element={<CuratorConsult />} />
             <Route path="/niyati" element={<Niyati />} />
             <Route path="/ayushi" element={<Ayushi />} />
             <Route path="/search" element={<Search />} />

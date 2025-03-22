@@ -7,7 +7,7 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
-      title: 'ILLUMINATION',
+      title: 'SHREENATHJI',
       artist: 'Ayushi Babariya',
       dimensions: '24in x 24in',
       price: 105000,

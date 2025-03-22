@@ -1330,6 +1330,209 @@ p {
   font-style: italic;
 }
 
+/* Authentication Pages */
+.login-container,
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+.forgot-page {
+  background: #f8f9fa;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card,
+.register-card,
+.forgot-container {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.register-card {
+  max-width: 450px;
+}
+
+.login-card h3,
+.register-card h3,
+.forgot-container h3 {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.login-card p,
+.register-card p,
+.forgot-container p {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.login-card input,
+.register-card input,
+.forgot-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  height: 40px;
+}
+
+.login-card .input-group,
+.register-card .input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.login-card .input-group input,
+.register-card .input-group input {
+  padding-right: 40px; /* Space for the toggle icon or prefix */
+}
+
+.login-card .password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666;
+}
+
+.register-card .input-group-text {
+  padding: 10px;
+  background: #f8f9fa;
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  font-size: 14px;
+  color: #666;
+}
+
+.login-card button,
+.register-card button,
+.forgot-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #153448;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-card button:hover,
+.register-card button:hover,
+.forgot-container button:hover {
+  background-color: #1a4a6b;
+}
+
+.login-card .forgot-password {
+  display: block;
+  text-align: right;
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+  color: #666;
+  transition: color 0.3s;
+}
+
+.login-card .forgot-password:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+.login-card .register-link,
+.register-card .login-link,
+.forgot-container .login-link {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 15px;
+}
+
+.login-card .register-link a,
+.register-card .login-link a,
+.forgot-container .login-link a {
+  font-weight: 600;
+  color: #153448;
+  transition: color 0.3s;
+}
+
+.login-card .register-link a:hover,
+.register-card .login-link a:hover,
+.forgot-container .login-link a:hover {
+  color: #1a4a6b;
+  text-decoration: underline;
+}
+
+.register-card .radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.register-card .radio-group label {
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.register-card .radio-group input {
+  width: auto;
+  height: auto;
+  margin: 0;
+}
+
+.register-card .form-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.register-card .form-check input {
+  width: auto;
+  height: auto;
+  margin: 0;
+}
+
+.register-card .form-check a {
+  color: #153448;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.register-card .form-check a:hover {
+  color: #1a4a6b;
+  text-decoration: underline;
+}
+
 /* Consolidated Responsive Adjustments */
 @media (max-width: 1024px) {
   /* Header */
@@ -2208,5 +2411,44 @@ p {
 
   .collection-note {
     font-size: 13px;
+  }
+
+  /* Authentication Pages */
+  .login-card,
+  .register-card,
+  .forgot-container {
+    padding: 1.5rem;
+    max-width: 300px;
+  }
+
+  .login-card h3,
+  .register-card h3,
+  .forgot-container h3 {
+    font-size: 1.5rem;
+  }
+
+  .login-card p,
+  .register-card p,
+  .forgot-container p {
+    font-size: 0.8rem;
+  }
+
+  .login-card input,
+  .register-card input,
+  .forgot-container input {
+    font-size: 13px;
+    height: 35px;
+  }
+
+  .login-card button,
+  .register-card button,
+  .forgot-container button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .register-card .radio-group {
+    flex-direction: column;
+    gap: 10px;
   }
 }

@@ -22,6 +22,7 @@ import CuratorConsult from './components/CuratorConsult';
 import Login from './components/Login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
+import Cart from './components/Cart';
 import Footer from './components/Footer';
 import './App.css';
 
@@ -34,12 +35,10 @@ const Home = () => (
   </>
 );
 
-// Placeholder components for routes that are not yet implemented
+// Placeholder components for routes not yet implemented
 const About = () => <h2>About Us Page</h2>;
-<Route path="/artist" element={<Artist />} />
 const Search = () => <h2>Search Page</h2>;
 const Profile = () => <h2>Profile Page</h2>;
-const Cart = () => <h2>Cart Page</h2>;
 const Admin = () => <h2>Admin Panel</h2>;
 const NotFound = () => <h2>404 - Page Not Found</h2>;
 
@@ -49,11 +48,7 @@ function App() {
       <div>
         <Header />
         <div style={{ margin: '20px' }}>
-          <Alert
-            successMessage={null}
-            errorMessage={null}
-            message={null}
-          />
+          <Alert successMessage={null} errorMessage={null} message={null} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -67,8 +62,8 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />           
-           <Route path="/cart" element={<Cart />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/cart" element={<Cart />} />            
             <Route path="/admin" element={<Admin />} />
             <Route path="/acrylic-paintings" element={<AcrylicPaintings />} />
             <Route path="/mandala-art" element={<MandalaArt />} />
@@ -81,7 +76,6 @@ function App() {
           </Routes>
         </div>
         <Footer />
-        
       </div>
     </Router>
   );

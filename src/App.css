@@ -1,9 +1,15 @@
 /* Reset and Base Styles */
-body {
-  font-family: Arial, sans-serif;
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
   background-color: #ffffff;
+  font-size: 16px; /* Base font size */
+  line-height: 1.6;
 }
 
 /* Common Styles */
@@ -12,13 +18,264 @@ a {
   color: inherit;
 }
 
-h1, h2, h3 {
-  margin: 0;
+h1 {
+  font-size: 40px; /* 2.5em = 40px at 16px base */
+  font-weight: bold;
+  color: #333;
+}
+
+h2 {
+  font-size: 32px; /* 2em = 32px at 16px base */
+  font-weight: bold;
+  color: #333;
+}
+
+h3 {
+  font-size: 20px; /* 1.25em = 20px at 16px base */
+  font-weight: bold;
+  color: #333;
 }
 
 p {
-  margin: 0;
+  font-size: 16px; /* 1em = 16px at 16px base */
+  color: #666;
   line-height: 1.6;
+}
+
+/* Header */
+.header {
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+.logo-section {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+}
+
+.rangshala-text {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 10px;
+  font-family: 'Georgia', serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.nav-icons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  height: 60px;
+}
+
+.icon-row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.social-icon {
+  font-size: 24px;
+  transition: transform 0.3s;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+
+.social-icon.instagram {
+  color: #e4405f;
+}
+
+.social-icon.facebook {
+  color: #3b5998;
+}
+
+.social-icon.twitter {
+  color: #1da1f2;
+}
+
+.nav-bar {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 0;
+  padding: 15px 0;
+}
+
+.menu li a {
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.menu li a:hover {
+  color: #153448;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-input {
+  padding: 8px 15px;
+  font-size: 16px;
+  border: 2px solid #4e4e61;
+  border-radius: 5px;
+  width: 200px;
+  height: 36px;
+}
+
+.search-button {
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #4e4e61;
+}
+
+.action-icon {
+  font-size: 24px;
+  color: black;
+  transition: transform 0.3s;
+}
+
+.action-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Placeholder Styles for Alert */
+.alert {
+  padding: 15px 30px;
+  margin: 20px 0;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.alert.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.alert.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Placeholder Styles for WelcomeSection */
+.welcome-section {
+  background-color: #f8f9fa;
+  padding: 60px 50px;
+  text-align: center;
+}
+
+.welcome-section h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.welcome-section p {
+  font-size: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Why RangShala Section */
+.why-rangshala-section {
+  padding: 60px 50px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.why-rangshala-section h1.section-title {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.why-rangshala-section .decorative-line {
+  width: 80px;
+  height: 4px;
+  background-color: #153448;
+  margin: 0 auto 30px;
+}
+
+.why-rangshala-section .content {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.why-rangshala-section .content div {
+  width: 300px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+.why-rangshala-section .content h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.why-rangshala-section .content p {
+  font-size: 16px;
+}
+
+.why-rangshala-section .why-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 60px; /* Adjusted gap to match screenshot */
+  padding-top: 20px;
+}
+
+.why-rangshala-section .why-item {
+  flex: 1 1 200px;
+  max-width: 220px;
+  text-align: center;
+}
+
+.why-rangshala-section .why-item img {
+  max-width: 50px; /* Smaller image size to match screenshot */
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.why-rangshala-section .why-item h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.why-rangshala-section .why-item p {
+  font-size: 14px;
+  color: #555;
 }
 
 /* Section Header (Used in Category Pages) */
@@ -36,8 +293,7 @@ p {
 }
 
 .section-header h2 {
-  font-size: 2.5em;
-  color: #333;
+  font-size: 40px; /* 2.5em = 40px at 16px base */
 }
 
 /* Artwork Card (Shared across Artwork Categories and Category Pages) */
@@ -52,14 +308,13 @@ p {
 
 /* Artwork Categories Section (Horizontal Slider) */
 .artwork-section {
-  padding: 40px 20px;
+  padding: 40px 50px;
   text-align: center;
 }
 
 .artwork-section h1 {
-  font-size: 2.5em;
+  font-size: 40px;
   margin-bottom: 20px;
-  color: #333;
 }
 
 .artwork-section .artwork-container {
@@ -98,6 +353,7 @@ p {
   font-weight: bold;
   display: block;
   margin: 10px 0;
+  font-size: 16px;
   transition: color 0.3s;
 }
 
@@ -106,15 +362,13 @@ p {
 }
 
 .artwork-section .artwork-card h3 {
-  font-size: 1em;
+  font-size: 16px; /* 1em = 16px at 16px base */
   margin: 5px 0;
-  color: #333;
 }
 
 .artwork-section .artwork-card p {
   margin: 5px 0;
-  color: #666;
-  font-size: 0.9em;
+  font-size: 14px; /* 0.9em = 14px at 16px base */
 }
 
 .artwork-section .artwork-card p:last-child {
@@ -133,12 +387,13 @@ p {
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
-  font-size: 1em;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
   margin-top: 20px;
   width: 200px;
+  height: 40px;
   text-align: center;
 }
 
@@ -149,7 +404,7 @@ p {
 
 /* Category Pages (Anime, Acrylic Paintings, Drawings, Mandala Art, Oil Painting) */
 .acrylic-painting-section {
-  padding: 40px 20px;
+  padding: 40px 50px;
   text-align: left;
 }
 
@@ -164,8 +419,9 @@ p {
 .acrylic-painting-section .artwork-card {
   border: 1px solid #ddd;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  max-width: 300px;
-  margin: auto;
+  width: 300px;
+  height: 400px; /* Adjusted for image, name, artist, and price */
+  margin: 0 auto;
 }
 
 .acrylic-painting-section .artwork-card:hover {
@@ -181,15 +437,13 @@ p {
 }
 
 .acrylic-painting-section .artwork-card h3 {
-  font-size: 1.2em;
+  font-size: 19px; /* 1.2em = 19px at 16px base */
   margin: 10px 0 5px;
-  color: #333;
 }
 
 .acrylic-painting-section .artwork-card p {
   margin: 5px 0;
-  color: #666;
-  font-size: 0.9em;
+  font-size: 14px; /* 0.9em = 14px at 16px base */
 }
 
 .acrylic-painting-section .artwork-card p:last-child {
@@ -228,9 +482,11 @@ p {
   padding: 10px 20px;
   margin: 5px;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 16px;
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
+  width: 120px;
+  height: 40px;
 }
 
 .overlay button:hover {
@@ -254,27 +510,28 @@ p {
   align-items: center;
   justify-content: center;
   padding: 50px;
+  gap: 40px;
 }
 
 .artwork-image {
-  max-width: 400px;
-  height: auto;
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .artwork-info {
-  margin-left: 40px;
+  max-width: 500px;
 }
 
 .artwork-info h1 {
-  font-size: 2em;
-  color: #333;
+  font-size: 32px; /* 2em = 32px at 16px base */
   margin-bottom: 10px;
 }
 
 .artwork-info h3 {
-  font-size: 1.5em;
+  font-size: 24px; /* 1.5em = 24px at 16px base */
   color: #555;
   margin-bottom: 5px;
 }
@@ -286,10 +543,11 @@ p {
   border-radius: 5px;
   display: inline-block;
   margin-bottom: 15px;
+  font-size: 16px;
 }
 
 .price {
-  font-size: 1.8em;
+  font-size: 28px; /* 1.8em = 28px at 16px base */
   color: black;
   font-weight: bold;
 }
@@ -297,15 +555,1219 @@ p {
 .back-button {
   margin-top: 20px;
   padding: 10px 20px;
-  font-size: 1em;
+  font-size: 16px;
   background-color: black;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  display: inline-block;
 }
 
 .back-button:hover {
   background-color: #444;
+}
+
+/* Featured Artist Section */
+.featured-artist-section {
+  text-align: left;
+  padding: 40px 50px;
+  background-color: #f8f9fa;
+  margin: 40px 0;
+}
+
+.featured-artist-section h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.decorative-line {
+  width: 100px;
+  height: 4px;
+  background-color: #153448;
+  border-radius: 2px;
+  margin-bottom: 5px;
+}
+
+.artist-grid {
+  display: flex;
+  justify-content: center;
+  gap: 200px;
+  margin-top: 20px;
+}
+
+.artist-card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+  padding: 20px;
+  width: 250px;
+  height: 350px; /* Adjusted for image, name, and button */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.artist-photo {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0;
+  margin-bottom: 15px;
+  border: 3px solid #ccc;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.artist-photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.artist-card h3 {
+  font-size: 19px; /* 1.2em = 19px at 16px base */
+  margin-bottom: 10px;
+}
+
+.explore-button {
+  background-color: #153448;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+}
+
+.explore-button:hover {
+  background-color: #1a4a6b;
+}
+
+/* Artist Profile Pages (Ayushi and Niyati) */
+.artist-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 2px solid black;
+  background: white;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.artist-profile.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.artist-image {
+  flex: 1;
+  text-align: center;
+  padding-right: 20px;
+}
+
+.artist-image img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border: 2px solid black;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.artist-image img:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.artist-info {
+  flex: 2;
+  text-align: left;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.artist-profile.loaded .artist-info {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.artist-info h1 {
+  font-size: 32px;
+  border-bottom: 2px solid black;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.artist-info p {
+  font-size: 18px;
+  margin-bottom: 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+.artist-info p:hover {
+  color: #444;
+}
+
+/* Artist Page */
+.artist-page {
+  padding: 40px 50px;
+  text-align: center;
+}
+
+.artist-page h1 {
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.filter-section {
+  margin-bottom: 30px;
+  text-align: left;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filter-section label {
+  font-size: 18px;
+  margin-right: 10px;
+  color: #333;
+}
+
+.filter-section select {
+  padding: 8px 15px;
+  font-size: 16px;
+  border: 2px solid #4e4e61;
+  border-radius: 5px;
+  width: 200px;
+  height: 40px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.artist-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+.artist-card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  height: 450px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.artist-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.artist-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.artist-card h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.artist-card .role {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.artist-card .description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.view-more {
+  background-color: #153448;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  width: 120px;
+  height: 40px;
+  line-height: 20px;
+  transition: background-color 0.3s;
+}
+
+.view-more:hover {
+  background-color: #1a4a6b;
+}
+
+/* Placeholder Styles for ArtworkGallery */
+.artwork-gallery {
+  padding: 40px 50px;
+  text-align: center;
+}
+
+.artwork-gallery h1 {
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.artwork-gallery .gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+/* Placeholder Styles for Footer */
+.footer {
+  background-color: #153448;
+  padding: 30px 50px;
+  text-align: center;
+  color: #fff;
+}
+
+.footer p {
+  font-size: 16px;
+  color: #ccc;
+}
+
+.footer a {
+  color: #fff;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #ccc;
+}
+
+/* Bespoke Services Page */
+.bespoke-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border-bottom: 3px solid black;
+  display: inline-block;
+  padding-bottom: 5px;
+  text-align: left;
+  margin-left: -50px; /* Moves the title further left */
+}
+
+.bespoke-container .why-rangshala-section {
+  text-align: left;
+  margin-bottom: 50px;
+  margin-left: -50px; /* Moves the entire section further left */
+}
+
+.bespoke-container .why-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 100px; /* Increased gap between items */
+}
+
+.bespoke-container .why-item {
+  flex: 1 1 180px;
+  max-width: 200px;
+  text-align: center;
+}
+
+.bespoke-container .why-item img {
+  max-width: 80px; /* Reduced image size */
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.bespoke-container .why-item h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.bespoke-container .why-item p {
+  font-size: 14px;
+  color: #555;
+}
+
+.art-advisory-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+.form-container {
+  flex: 1;
+}
+
+.form-container p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  height: 40px; /* Explicit height for inputs and select */
+}
+
+.form-container textarea {
+  height: 100px; /* Explicit height for textarea */
+}
+
+.form-container button {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 150px;
+  height: 40px;
+  transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+  background-color: #333;
+}
+
+.image-container {
+  flex: 1;
+  position: relative;
+  margin-top: 100px; /* Moves the image further down */
+}
+
+.image-container img {
+  width: 700px;
+  height: 500px;
+  border-radius: 10px;
+  position: relative;
+}
+
+/* Join Us Section */
+.join-us-container {
+  text-align: left;
+  padding: 60px 50px;
+  background: #fff;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.join-us-container h1.section-title {
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.join-us-description {
+  font-size: 16px;
+  color: #666;
+  margin: 15px 0 40px;
+  max-width: 600px;
+}
+
+.join-us-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 40px;
+}
+
+.join-us-form {
+  flex: 1 1 40%; /* Adjusted to ~40% to match screenshot */
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.join-us-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.join-us-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.join-us-form input,
+.join-us-form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  height: 45px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.join-us-form input:focus,
+.join-us-form select:focus {
+  border-color: #153448;
+  box-shadow: 0 0 5px rgba(21, 52, 72, 0.3);
+  outline: none;
+}
+
+.join-us-form input[type="file"] {
+  padding: 8px 12px;
+  height: auto;
+}
+
+.join-us-form label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.join-us-form .terms-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.join-us-form .terms-container label {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.join-us-form .terms-container a {
+  color: #153448;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.join-us-form .terms-container a:hover {
+  color: #1a4a6b;
+}
+
+.join-us-form button {
+  background: #153448;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 48px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.join-us-form button:hover {
+  background: #1a4a6b;
+  transform: scale(1.02);
+}
+
+.join-us-image {
+  flex: 1 1 55%; /* Adjusted to ~55% to match screenshot */
+  display: flex;
+  align-items: stretch;
+}
+
+.join-us-image img {
+  width: 100%;
+  height: 450px; /* Adjusted height to match screenshot */
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.join-us-image img:hover {
+  transform: scale(1.02);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .artist-grid {
+    gap: 100px;
+  }
+
+  .artist-profile {
+    max-width: 90%;
+  }
+
+  .nav-icons-container {
+    padding: 0 30px;
+  }
+
+  .menu {
+    gap: 20px;
+  }
+
+  /* Bespoke Services Page */
+  .bespoke-container {
+    padding: 40px 30px;
+  }
+
+  .bespoke-container .why-row {
+    gap: 60px;
+  }
+
+  .image-container img {
+    width: 500px;
+    height: 350px;
+  }
+
+  /* Why RangShala Section */
+  .why-rangshala-section {
+    padding: 50px 40px;
+  }
+
+  .why-rangshala-section .why-row {
+    gap: 40px;
+  }
+
+  .why-rangshala-section .why-item {
+    flex: 1 1 180px;
+    max-width: 200px;
+  }
+
+  /* Join Us Section */
+  .join-us-container {
+    padding: 50px 40px;
+    max-width: 100%;
+  }
+
+  .join-us-form {
+    flex: 1 1 45%;
+    padding: 25px;
+  }
+
+  .join-us-image {
+    flex: 1 1 50%;
+  }
+
+  .join-us-image img {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Header */
+  .nav-icons-container {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+    height: auto;
+  }
+
+  .menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-input {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  /* Welcome Section */
+  .welcome-section {
+    padding: 40px 20px;
+  }
+
+  .welcome-section h1 {
+    font-size: 36px;
+  }
+
+  .welcome-section p {
+    font-size: 18px;
+  }
+
+  /* Why RangShala Section */
+  .why-rangshala-section {
+    padding: 40px 20px;
+  }
+
+  .why-rangshala-section h1.section-title {
+    font-size: 36px;
+  }
+
+  .why-rangshala-section .content div {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .why-rangshala-section .why-row {
+    gap: 30px;
+  }
+
+  .why-rangshala-section .why-item {
+    flex: 1 1 160px;
+    max-width: 180px;
+  }
+
+  .why-rangshala-section .why-item img {
+    max-width: 45px;
+  }
+
+  .why-rangshala-section .why-item h3 {
+    font-size: 16px;
+  }
+
+  .why-rangshala-section .why-item p {
+    font-size: 13px;
+  }
+
+  /* Artwork Categories Section */
+  .artwork-section {
+    padding: 30px 20px;
+  }
+
+  .artwork-section .artwork-card {
+    width: 180px;
+    height: 280px;
+  }
+
+  .artwork-section .artwork-card:hover {
+    width: 200px;
+    height: 300px;
+  }
+
+  .artwork-section .artwork-card img {
+    height: 130px;
+  }
+
+  /* Category Pages */
+  .acrylic-painting-section {
+    padding: 30px 20px;
+  }
+
+  .acrylic-painting-section .artwork-card {
+    width: 250px;
+    height: 350px;
+  }
+
+  .acrylic-painting-section .artwork-card img {
+    width: 250px;
+    height: 250px;
+  }
+
+  /* Featured Artist Section */
+  .featured-artist-section {
+    padding: 30px 20px;
+  }
+
+  .artist-grid {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .artist-card {
+    width: 80%;
+    max-width: 300px;
+    height: 380px;
+  }
+
+  .artist-photo {
+    height: 220px;
+  }
+
+  /* Artist Profile Pages */
+  .artist-profile {
+    flex-direction: column;
+    max-width: 90%;
+  }
+
+  .artist-image {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .artist-image img {
+    max-width: 300px;
+  }
+
+  .artist-info {
+    text-align: center;
+  }
+
+  .artist-info h1 {
+    font-size: 28px;
+  }
+
+  .artist-info p {
+    font-size: 16px;
+  }
+
+  /* Artist Page */
+  .artist-page {
+    padding: 30px 20px;
+  }
+
+  .artist-page h1 {
+    font-size: 32px;
+  }
+
+  .filter-section {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .filter-section select {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .artist-card {
+    width: 100%;
+    max-width: 300px;
+    height: 420px;
+  }
+
+  .artist-image {
+    height: 220px;
+  }
+
+  /* Artwork Detail Page */
+  .artwork-detail-container {
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 20px;
+  }
+
+  .artwork-image {
+    width: 300px;
+    height: 300px;
+  }
+
+  .artwork-info {
+    max-width: 100%;
+  }
+
+  /* Bespoke Services Page */
+  .bespoke-container {
+    padding: 30px 20px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    margin-left: 0;
+  }
+
+  .bespoke-container .why-rangshala-section {
+    margin-left: 0;
+  }
+
+  .bespoke-container .why-row {
+    gap: 40px;
+  }
+
+  .bespoke-container .why-item {
+    flex: 1 1 150px;
+    max-width: 180px;
+  }
+
+  .bespoke-container .why-item img {
+    max-width: 60px;
+  }
+
+  .bespoke-container .why-item h3 {
+    font-size: 16px;
+  }
+
+  .bespoke-container .why-item p {
+    font-size: 13px;
+  }
+
+  .art-advisory-section {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .image-container {
+    margin-top: 0;
+  }
+
+  .image-container img {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+  }
+
+  /* Join Us Section */
+  .join-us-container {
+    padding: 40px 30px;
+  }
+
+  .join-us-container h1.section-title {
+    font-size: 36px;
+  }
+
+  .join-us-description {
+    font-size: 15px;
+    margin: 15px 0 30px;
+  }
+
+  .join-us-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .join-us-form {
+    flex: 1 1 100%;
+    padding: 20px;
+  }
+
+  .join-us-image {
+    flex: 1 1 100%;
+  }
+
+  .join-us-image img {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Header */
+  .logo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .rangshala-text {
+    font-size: 24px;
+  }
+
+  .social-icon, .action-icon {
+    font-size: 20px;
+  }
+
+  .menu li a {
+    font-size: 14px;
+  }
+
+  .search-input {
+    width: 100%;
+    max-width: 200px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .search-button {
+    font-size: 14px;
+  }
+
+  /* Welcome Section */
+  .welcome-section h1 {
+    font-size: 28px;
+  }
+
+  .welcome-section p {
+    font-size: 16px;
+  }
+
+  /* Why RangShala Section */
+  .why-rangshala-section {
+    padding: 30px 15px;
+  }
+
+  .why-rangshala-section h1.section-title {
+    font-size: 28px;
+  }
+
+  .why-rangshala-section .why-row {
+    gap: 20px;
+  }
+
+  .why-rangshala-section .why-item {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .why-rangshala-section .why-item img {
+    max-width: 40px;
+  }
+
+  .why-rangshala-section .why-item h3 {
+    font-size: 14px;
+  }
+
+  .why-rangshala-section .why-item p {
+    font-size: 12px;
+  }
+
+  /* Artwork Categories Section */
+  .artwork-section h1 {
+    font-size: 32px;
+  }
+
+  .artwork-section .artwork-card {
+    width: 160px;
+    height: 260px;
+  }
+
+  .artwork-section .artwork-card:hover {
+    width: 180px;
+    height: 280px;
+  }
+
+  .artwork-section .artwork-card img {
+    height: 110px;
+  }
+
+  .artwork-section .view-all-button {
+    width: 160px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  /* Category Pages */
+  .acrylic-painting-section .artwork-card {
+    width: 100%;
+    max-width: 300px;
+    height: 380px;
+  }
+
+  .acrylic-painting-section .artwork-card img {
+    width: 100%;
+    height: 220px;
+  }
+
+  /* Featured Artist Section */
+  .featured-artist-section h1 {
+    font-size: 32px;
+  }
+
+  .artist-card {
+    width: 90%;
+    height: 360px;
+  }
+
+  .artist-photo {
+    height: 200px;
+  }
+
+  /* Artist Profile Pages */
+  .artist-image img {
+    max-width: 250px;
+  }
+
+  .artist-info h1 {
+    font-size: 24px;
+  }
+
+  .artist-info p {
+    font-size: 14px;
+  }
+
+  /* Artist Page */
+  .artist-page h1 {
+    font-size: 28px;
+  }
+
+  .filter-section select {
+    max-width: 200px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .artist-card {
+    height: 400px;
+  }
+
+  .artist-image {
+    height: 200px;
+  }
+
+  .artist-card h3 {
+    font-size: 18px;
+  }
+
+  .artist-card .role {
+    font-size: 14px;
+  }
+
+  .artist-card .description {
+    font-size: 13px;
+  }
+
+  .view-more {
+    width: 100px;
+    height: 36px;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  /* Artwork Detail Page */
+  .artwork-image {
+    width: 250px;
+    height: 250px;
+  }
+
+  .artwork-info h1 {
+    font-size: 28px;
+  }
+
+  .artwork-info h3 {
+    font-size: 20px;
+  }
+
+  .price {
+    font-size: 24px;
+  }
+
+  .back-button {
+    width: 160px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  /* Bespoke Services Page */
+  .bespoke-container {
+    padding: 20px 15px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .bespoke-container .why-row {
+    gap: 30px;
+  }
+
+  .bespoke-container .why-item {
+    flex: 1 1 120px;
+    max-width: 150px;
+  }
+
+  .bespoke-container .why-item img {
+    max-width: 50px;
+  }
+
+  .bespoke-container .why-item h3 {
+    font-size: 14px;
+  }
+
+  .bespoke-container .why-item p {
+    font-size: 12px;
+  }
+
+  .form-container p {
+    font-size: 14px;
+  }
+
+  .form-container input,
+  .form-container select,
+  .form-container textarea {
+    font-size: 13px;
+    height: 36px;
+  }
+
+  .form-container textarea {
+    height: 80px;
+  }
+
+  .form-container button {
+    width: 120px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .image-container img {
+    max-width: 300px;
+    height: 200px;
+  }
+
+  /* Join Us Section */
+  .join-us-container {
+    padding: 30px 20px;
+  }
+
+  .join-us-container h1.section-title {
+    font-size: 28px;
+  }
+
+  .join-us-description {
+    font-size: 14px;
+    margin: 10px 0 20px;
+  }
+
+  .join-us-form {
+    padding: 15px;
+  }
+
+  .join-us-form input,
+  .join-us-form select {
+    font-size: 13px;
+    height: 40px;
+    padding: 10px;
+  }
+
+  .join-us-form label {
+    font-size: 13px;
+  }
+
+  .join-us-form .terms-container label {
+    font-size: 12px;
+  }
+
+  .join-us-form button {
+    font-size: 14px;
+    height: 42px;
+    padding: 10px;
+  }
+
+  .join-us-image img {
+    height: 250px;
+  }
 }

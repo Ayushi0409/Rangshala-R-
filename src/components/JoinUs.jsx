@@ -71,7 +71,7 @@ const JoinUs = () => {
         <h1 className="section-title">Join Us</h1>
         <div className="decorative-line"></div>
         <p className="join-us-description">
-          The House of Creativity welcomes artists to join us. Upload your artwork, and our team will evaluate it.
+          The RangShala  welcomes artists to join us. Upload your artwork, and our team will evaluate it.
         </p>
         <div className="join-us-section">
           <div className="join-us-form">

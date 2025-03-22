@@ -251,7 +251,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 60px; /* Adjusted gap to match screenshot */
+  gap: 200px; /* Adjusted gap to match screenshot */
   padding-top: 20px;
 }
 

@@ -10,6 +10,7 @@ import oil8 from '../Images/oil8.jpg';
 import oil9 from '../Images/oil9.jpg';
 import oil10 from '../Images/oil10.jpg';
 
+
 const OilPainting = () => {
   const artworks = [
     { name: 'Ganpati Bappa', artist: 'Ayushi Babariya', price: 'INR 4500', image: oil1 },

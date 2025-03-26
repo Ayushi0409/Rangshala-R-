@@ -5,7 +5,6 @@ import choiceImage from '../Images/choice.png';
 import implementationImage from '../Images/Implementation.png';
 import artworkImage from '../Images/artwork-image.jpg';
 
-
 const Bespoke = () => {
   const whyItems = [
     {

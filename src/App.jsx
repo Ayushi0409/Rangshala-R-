@@ -1,3 +1,4 @@
+// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
@@ -23,6 +24,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
 import Cart from './components/Cart';
+import Checkout from './components/Checkout'; // Add this import
 import Footer from './components/Footer';
 import './App.css';
 
@@ -35,7 +37,6 @@ const Home = () => (
   </>
 );
 
-// Placeholder components for routes not yet implemented
 const About = () => <h2>About Us Page</h2>;
 const Search = () => <h2>Search Page</h2>;
 const Profile = () => <h2>Profile Page</h2>;
@@ -54,6 +55,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/artist" element={<Artist />} />
             <Route path="/bespoke" element={<Bespoke />} />
+            <Route path="/artwork" element={<Artwork />} />
             <Route path="/join" element={<JoinUs />} />
             <Route path="/consult" element={<CuratorConsult />} />
             <Route path="/niyati" element={<Niyati />} />
@@ -63,7 +65,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/cart" element={<Cart />} />            
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} /> {/* Add this route */}
             <Route path="/admin" element={<Admin />} />
             <Route path="/acrylic-paintings" element={<AcrylicPaintings />} />
             <Route path="/mandala-art" element={<MandalaArt />} />

@@ -7,6 +7,7 @@ import sunrisePainting from '../Images/SunrisePainting.jpg';
 import rainyDay from '../Images/RainyDay.jpg';
 import acraylic from '../Images/Acraylic Painting.jpeg';
 
+
 const AcrylicPaintings = () => {
   const artworks = [
     { name: 'Shree Nathji', artist: 'Ayushi Babariya', price: 'INR 4500', image: shreenathji },

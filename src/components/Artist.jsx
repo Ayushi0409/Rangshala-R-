@@ -7,6 +7,7 @@ import miraliImage from '../Images/mirali.jpg';
 const Artist = () => {
   const [filter, setFilter] = useState('all');
 
+  
   const artists = [
     {
       name: 'Mahek Babariya',

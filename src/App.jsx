@@ -24,7 +24,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
 import Cart from './components/Cart';
-import Checkout from './components/Checkout'; // Add this import
+import Checkout from './components/Checkout';
+import AdminLogin from './components/AdminLogin'; // Add this import
 import Footer from './components/Footer';
 import './App.css';
 
@@ -67,7 +68,7 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} /> {/* Add this route */}
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin" element={<AdminLogin />} />            
             <Route path="/acrylic-paintings" element={<AcrylicPaintings />} />
             <Route path="/mandala-art" element={<MandalaArt />} />
             <Route path="/anime" element={<Anime />} />

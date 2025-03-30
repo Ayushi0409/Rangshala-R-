@@ -2727,3 +2727,103 @@ p {
   margin-top: 5px;
   text-align: center;
 }
+/* Admin Login Styles */
+/* Admin Login Styles */
+.admin-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f4f4f4;
+  padding: 20px;
+}
+
+.login-card {
+  text-align: center;
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  width: 420px;
+  max-width: 480px; /* Slightly wider for better alignment */
+}
+
+.login-card .logo {
+  width: 110px; /* Slightly larger for visibility */
+  margin-bottom: 20px;
+}
+
+.login-card h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #222;
+}
+
+.login-card .input-group {
+  display: flex;
+  align-items: center;
+  background: #eaeaea;
+  padding: 14px;
+  border-radius: 8px;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.login-card .input-icon {
+  margin-right: 12px;
+  color: #555;
+  font-size: 18px;
+}
+
+.login-card .input-group input {
+  border: none;
+  background: none;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  color: #333;
+  padding: 5px;
+}
+
+.login-card .input-group input::placeholder {
+  color: #777;
+}
+
+.login-card .login-button {
+  background: #000;
+  color: #fff;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.login-card .login-button:hover {
+  background: #444;
+}
+
+.login-card .error-message {
+  color: #ff4444;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.login-card .forgot-password {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.login-card .forgot-password a {
+  color: #555;
+  transition: color 0.3s;
+}
+
+.login-card .forgot-password a:hover {
+  color: #000;
+  text-decoration: underline;
+}

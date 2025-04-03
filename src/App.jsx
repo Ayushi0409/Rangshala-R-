@@ -15,6 +15,7 @@ import OilPainting from './components/OilPainting';
 import ArtworkGallery from './components/ArtworkGallery';
 import ArtworkDetail from './components/ArtworkDetail';
 import Ayushi from './components/Ayushi';
+import AddArtworkForm from './components/AddArtworkForm';
 import Niyati from './components/Niyati';
 import Bespoke from './components/Bespoke';
 import Artist from './components/Artist';
@@ -27,6 +28,12 @@ import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import AdminLogin from './components/AdminLogin'; // Add this import
 import Footer from './components/Footer';
+import AdminDashboard from './components/AdminDashboard';
+import AddAcrylicPainting from './components/AddAcrylicPainting';
+import AddOilPainting from './components/AddOilPainting'; // New import
+import AddMandalaArt from './components/AddMandalaArt'; // New import
+import AddAnimeDrawings from './components/AddAnimeDrawings'; // New import
+import AddDrawing from './components/AddDrawing';
 import './App.css';
 
 const Home = () => (
@@ -68,7 +75,13 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} /> {/* Add this route */}
-            <Route path="/admin" element={<AdminLogin />} />            
+            <Route path="/admin" element={<AdminLogin />} /> 
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />  
+            <Route path="/admin/add-acrylic-painting" element={<AddArtworkForm artworkType="Acrylic Painting" />} />
+            <Route path="/admin/add-oil-painting" element={<AddArtworkForm artworkType="Oil Painting" />} />
+            <Route path="/admin/add-mandala-art" element={<AddArtworkForm artworkType="Mandala Art" />} />
+            <Route path="/admin/add-anime-drawings" element={<AddArtworkForm artworkType="Anime Drawing" />} />
+            <Route path="/admin/add-drawing" element={<AddArtworkForm artworkType="Drawing" />} />
             <Route path="/acrylic-paintings" element={<AcrylicPaintings />} />
             <Route path="/mandala-art" element={<MandalaArt />} />
             <Route path="/anime" element={<Anime />} />
@@ -76,6 +89,7 @@ function App() {
             <Route path="/oil-painting" element={<OilPainting />} />
             <Route path="/artwork-gallery" element={<ArtworkGallery />} />
             <Route path="/artwork-detail" element={<ArtworkDetail />} />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

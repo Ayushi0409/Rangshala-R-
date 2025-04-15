@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+// src/components/AdminDashboard.jsx
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FaTachometerAlt, FaPalette, FaUsers, FaBox, FaMoneyBillWave, FaEnvelope, FaPaintBrush, FaShoppingCart, FaList } from 'react-icons/fa';
+import axios from 'axios';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [isArtworkModalOpen, setIsArtworkModalOpen] = useState(false);
   const [isArtsDropdownOpen, setIsArtsDropdownOpen] = useState(false);
+  const [customers, setCustomers] = useState([]);
+  const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
+  const [error, setError] = useState('');
 
   const dashboardData = {
     artworks: 25,
@@ -19,22 +24,42 @@ const AdminDashboard = () => {
     { id: 2, name: 'Mandala Dream', image: 'https://via.placeholder.com/50', price: 3000, artist: 'Niyati', category: 'Mandala' },
   ];
 
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try {
+        // eslint-disable-next-line no-undef
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token') || ''}` },
+        });
+        setCustomers(response.data);
+        setError('');
+      } catch (err) {
+        setError('Failed to fetch customers. Ensure the server is running.');
+        console.error('Error fetching customers:', err);
+      }
+    };
+    fetchCustomers();
+  }, []);
+
   const handleLogout = () => {
+    localStorage.removeItem('token');
     navigate('/admin');
   };
 
   const openArtworkModal = () => setIsArtworkModalOpen(true);
   const closeArtworkModal = () => setIsArtworkModalOpen(false);
+  const openCustomerModal = () => setIsCustomerModalOpen(true);
+  const closeCustomerModal = () => setIsCustomerModalOpen(false);
 
   const toggleArtsDropdown = (e) => {
-    e.stopPropagation(); // Prevent click from bubbling up
+    e.stopPropagation();
     setIsArtsDropdownOpen(!isArtsDropdownOpen);
   };
 
   const handleLinkClick = (e, path) => {
-    console.log(`Navigating to: ${path}`); // Debug click
-    e.stopPropagation(); // Prevent dropdown toggle from closing on link click
-    setIsArtsDropdownOpen(false); // Close dropdown after clicking a link
+    e.stopPropagation();
+    setIsArtsDropdownOpen(false);
+    navigate(path);
   };
 
   return (
@@ -59,7 +84,7 @@ const AdminDashboard = () => {
             <Link to="/admin/add-drawing" onClick={(e) => handleLinkClick(e, '/admin/add-drawing')}>Add Drawing</Link>
           </div>
         </div>
-        <Link to="/admin/view-customers"><FaUsers /> View Customer</Link>
+        <Link to="/admin/view-customers" onClick={openCustomerModal}><FaUsers /> View Customer</Link>
         <Link to="/admin/view-orders"><FaBox /> View Order</Link>
         <Link to="/admin/view-payments"><FaMoneyBillWave /> View Payments</Link>
         <Link to="/admin/view-enquiries"><FaEnvelope /> View Enquiries</Link>
@@ -121,6 +146,44 @@ const AdminDashboard = () => {
                       <td>INR {artwork.price}</td>
                       <td>{artwork.artist}</td>
                       <td>{artwork.category}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
+      )}
+
+      {isCustomerModalOpen && (
+        <div className="modal" onClick={closeCustomerModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <span className="close" onClick={closeCustomerModal}>×</span>
+            <h2>Customer List</h2>
+            {error && <p className="error">{error}</p>}
+            {customers.length === 0 ? (
+              <p>No customers registered.</p>
+            ) : (
+              <table>
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Registered On</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {customers.map((customer) => (
+                    <tr key={customer._id}>
+                      <td>{customer.title}</td>
+                      <td>{customer.firstName}</td>
+                      <td>{customer.lastName}</td>
+                      <td>{customer.email}</td>
+                      <td>{customer.mobile}</td>
+                      <td>{new Date(customer.createdAt).toLocaleDateString()}</td>
                     </tr>
                   ))}
                 </tbody>

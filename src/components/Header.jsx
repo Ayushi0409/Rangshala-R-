@@ -11,7 +11,39 @@ const Header = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery) {
+      const query = searchQuery.trim().toLowerCase();
+      const searchMap = {
+        'welcome': '/',
+        'artist': '/artist',
+        'ayushi': '/ayushi',
+        'niyati': '/niyati',
+        'why rang shala': '/why-rang-shala',
+        'artwork': '/artwork',
+        'acrylic': '/acrylic-paintings',
+        'mandalaart': '/mandalaart',
+        'anime': '/anime',
+        'drawings': '/drawings',
+        'oil painting': '/oil-painting',
+        'gallery': '/artwork-gallery',
+        'artwork detail': '/artwork-detail',
+        'add artwork': '/add-artwork',
+        'bespoke': '/bespoke',
+        'join': '/join',
+        'consult': '/curator-consult',
+        'login': '/login',
+        'register': '/register'
+      };
+
+      for (const [key, path] of Object.entries(searchMap)) {
+        if (query.includes(key)) {
+          navigate(path);
+          setSearchQuery('');
+          return;
+        }
+      }
+
       navigate(`/search?query=${searchQuery}`);
+      setSearchQuery('');
     }
   };
 

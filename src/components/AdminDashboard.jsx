@@ -68,21 +68,36 @@ const AdminDashboard = () => {
         <h2>Rang Shala</h2>
         <Link to="/admin-dashboard" className="active"><FaTachometerAlt /> Dashboard</Link>
         <div className="dropdown">
-          <div className="dropdown-toggle" onClick={toggleArtsDropdown}>
+          <div
+            className="dropdown-toggle"
+            onClick={toggleArtsDropdown}
+          >
             <FaPalette /> Arts
           </div>
-          <div className={`dropdown-content ${isArtsDropdownOpen ? 'show' : ''}`}>
-            <Link to="/acrylic-paintings" onClick={(e) => handleLinkClick(e, '/acrylic-paintings')}>Acrylic Painting</Link>
-            <Link to="/admin/add-acrylic-painting" onClick={(e) => handleLinkClick(e, '/admin/add-acrylic-painting')}>Add Acrylic Painting</Link>
-            <Link to="/oil-painting" onClick={(e) => handleLinkClick(e, '/oil-painting')}>Oil Painting</Link>
-            <Link to="/admin/add-oil-painting" onClick={(e) => handleLinkClick(e, '/admin/add-oil-painting')}>Add Oil Painting</Link>
-            <Link to="/mandala-art" onClick={(e) => handleLinkClick(e, '/mandala-art')}>Mandala Art</Link>
-            <Link to="/admin/add-mandala-art" onClick={(e) => handleLinkClick(e, '/admin/add-mandala-art')}>Add Mandala Art</Link>
-            <Link to="/anime" onClick={(e) => handleLinkClick(e, '/anime')}>Anime Drawings</Link>
-            <Link to="/admin/add-anime-drawings" onClick={(e) => handleLinkClick(e, '/admin/add-anime-drawings')}>Add Anime Drawings</Link>
-            <Link to="/drawings" onClick={(e) => handleLinkClick(e, '/drawings')}>Drawing</Link>
-            <Link to="/admin/add-drawing" onClick={(e) => handleLinkClick(e, '/admin/add-drawing')}>Add Drawing</Link>
-          </div>
+          {isArtsDropdownOpen && (
+            <div className="dropdown-content">
+              {[
+                { label: 'Acrylic Painting', path: '/acrylic-paintings' },
+                { label: 'Add Acrylic Painting', path: '/admin/add-acrylic-painting' },
+                { label: 'Oil Painting', path: '/oil-painting' },
+                { label: 'Add Oil Painting', path: '/admin/add-oil-painting' },
+                { label: 'Mandala Art', path: '/mandala-art' },
+                { label: 'Add Mandala Art', path: '/admin/add-mandala-art' },
+                { label: 'Anime Drawings', path: '/anime' },
+                { label: 'Add Anime Drawings', path: '/admin/add-anime-drawings' },
+                { label: 'Drawing', path: '/drawings' },
+                { label: 'Add Drawing', path: '/admin/add-drawing' },
+              ].map((item, idx) => (
+                <Link
+                  key={idx}
+                  to={item.path}
+                  onClick={(e) => handleLinkClick(e, item.path)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
         <Link to="/admin/view-customers" onClick={openCustomerModal}><FaUsers /> View Customer</Link>
         <Link to="/admin/view-orders"><FaBox /> View Order</Link>

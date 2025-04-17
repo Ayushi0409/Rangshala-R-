@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import '../App.css'; // Fixed import path
-
+import axios from 'axios';
+import '../App.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,10 +10,25 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login submitted with:', email, password);
-    navigate('/'); // Redirect to home page
+
+    try {
+      const res = await axios.post('http://localhost:5000/api/auth/login', {
+        email,
+        password,
+      });
+
+      if (res.data.success) {
+        alert(res.data.message);
+        navigate('/');
+      } else {
+        alert(res.data.message);
+      }
+    } catch (err) {
+      alert('Login failed. Please check your credentials or try again.');
+      console.error(err);
+    }
   };
 
   return (
@@ -22,33 +37,20 @@ const Login = () => {
         <h3>Welcome to RangShala</h3>
         <p>Log in to your account</p>
         <form onSubmit={handleSubmit}>
-          <div>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email Address"
-              required
-            />
-          </div>
+          <input type="email" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} required />
           <div className="input-group">
             <input
               type={showPassword ? 'text' : 'password'}
+              placeholder="Enter Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter Password"
               required
             />
-            <span
-              className="password-toggle"
-              onClick={() => setShowPassword(!showPassword)}
-            >
+            <span className="password-toggle" onClick={() => setShowPassword(!showPassword)}>
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
-          <Link to="/forgot-password" className="forgot-password">
-            Forgot password?
-          </Link>
+          <Link to="/forgot-password" className="forgot-password">Forgot password?</Link>
           <button type="submit">Login</button>
         </form>
         <p className="register-link">

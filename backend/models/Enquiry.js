@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 const mongoose = require('mongoose');
 
 const enquirySchema = new mongoose.Schema({

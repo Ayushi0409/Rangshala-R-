@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  FaPaintBrush,
-  FaUsers,
-  FaBox,
-  FaMoneyBillWave,
-  FaEnvelope,
-  FaPalette,
-} from "react-icons/fa";
+import { FaPaintBrush, FaUsers, FaBox, FaMoneyBillWave, FaEnvelope, FaPalette } from "react-icons/fa";
+import ViewEnquiries from './ViewEnquiries';
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -129,7 +123,6 @@ const AdminDashboard = () => {
 
   return (
     <div style={styles.container}>
-      {/* Sidebar */}
       <div style={styles.sidebar}>
         <div style={styles.header}>🎨 Rang Shala</div>
         <div style={styles.link} onClick={() => setActiveSection("dashboard")}>
@@ -151,8 +144,6 @@ const AdminDashboard = () => {
           <FaEnvelope /> View Enquiries
         </div>
       </div>
-
-      {/* Main Content */}
       <div style={styles.main}>
         {activeSection === "dashboard" && (
           <>
@@ -181,7 +172,6 @@ const AdminDashboard = () => {
             </div>
           </>
         )}
-
         {activeSection === "artworks" && (
           <>
             <h2>All Artworks</h2>
@@ -211,7 +201,6 @@ const AdminDashboard = () => {
             </table>
           </>
         )}
-
         {activeSection === "customers" && (
           <>
             <h2>Customer List</h2>
@@ -248,10 +237,9 @@ const AdminDashboard = () => {
             )}
           </>
         )}
-
         {activeSection === "orders" && <h2>Orders Section (Coming Soon)</h2>}
         {activeSection === "payments" && <h2>Payments Section (Coming Soon)</h2>}
-        {activeSection === "enquiries" && <h2>Enquiries Section (Coming Soon)</h2>}
+        {activeSection === "enquiries" && <ViewEnquiries />}
       </div>
     </div>
   );

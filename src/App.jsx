@@ -34,6 +34,7 @@ import AddOilPainting from './components/AddOilPainting';
 import AddMandalaArt from './components/AddMandalaArt';
 import AddAnimeDrawings from './components/AddAnimeDrawings';
 import AddDrawing from './components/AddDrawing';
+import ViewEnquiries from './Admin/ViewEnquiries';
 import './App.css';
 
 const Home = () => (
@@ -75,7 +76,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/admin-login" element={<AdminLogin />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} /> {/* Correct route */}
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/admin/customers" element={<AdminCustomers />} />
             <Route path="/admin/add-acrylic-painting" element={<AddArtworkForm artworkType="Acrylic Painting" />} />
             <Route path="/admin/add-oil-painting" element={<AddArtworkForm artworkType="Oil Painting" />} />
@@ -89,6 +90,7 @@ function App() {
             <Route path="/oil-painting" element={<OilPainting />} />
             <Route path="/artwork-gallery" element={<ArtworkGallery />} />
             <Route path="/artwork-detail" element={<ArtworkDetail />} />
+            <Route path="/admin/enquiries" element={<ViewEnquiries />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

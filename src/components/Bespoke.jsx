@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import emailjs from '@emailjs/browser';
 import expertAdviceImage from '../Images/Expert Advise.png';
 import ideaImage from '../Images/Idea.png';
@@ -51,20 +52,56 @@ const Bespoke = () => {
     setStatus('Sending...');
 
     try {
-      await emailjs.send(
-        'service_awk8faa', // Your EmailJS Service ID
-        'template_b57xies', // Your EmailJS Template ID
+      const currentDate = new Date().toLocaleString();
+      const phone = `${formData.countryCode}${formData.mobileNo}`;
+
+      // Send data to backend
+      const apiResponse = await axios.post('http://localhost:5000/api/enquiries', {
+        name: formData.name,
+        companyName: formData.companyName,
+        designation: formData.designation,
+        email: formData.email,
+        countryCode: formData.countryCode,
+        mobileNo: formData.mobileNo,
+        enquiry: formData.enquiry,
+      });
+      console.log('Backend response:', apiResponse.data);
+
+      // Send email to submitter
+      const emailResponse = await emailjs.send(
+        'service_awk8faa',
+        'template_b57xies',
         {
           name: formData.name,
           company_name: formData.companyName,
           designation: formData.designation,
           email: formData.email,
-          phone: `${formData.countryCode}${formData.mobileNo}`,
+          phone: phone,
           enquiry: formData.enquiry,
+          date: currentDate,
         },
-        'A4u9NLi3GmTFMIL0Q' // Your EmailJS Public Key
+        'A4u9NLi3GmTFMIL0Q'
       );
-      setStatus('Enquiry sent successfully!');
+      console.log('EmailJS response to submitter:', emailResponse);
+
+      // Send email to admin
+      await emailjs.send(
+        'service_awk8faa',
+        'template_b57xies',
+        {
+          name: formData.name,
+          company_name: formData.companyName,
+          designation: formData.designation,
+          email: 'ayushibabariya4@gmail.com',
+          phone: phone,
+          enquiry: formData.enquiry,
+          date: currentDate,
+        },
+        'A4u9NLi3GmTFMIL0Q'
+      );
+      console.log('EmailJS response to admin:', emailResponse);
+
+      setStatus('Enquiry sent successfully and email notifications sent to you and the admin!');
       setFormData({
         name: '',
         companyName: '',
@@ -75,8 +112,12 @@ const Bespoke = () => {
         enquiry: '',
       });
     } catch (error) {
-      setStatus('Failed to send enquiry. Please try again.');
-      console.error('EmailJS error:', error);
+      console.error('Detailed error:', {
+        message: error.message,
+        response: error.response ? error.response.data : 'No response',
+        stack: error.stack,
+      });
+      setStatus(`Failed to send enquiry. Please try again. Error: ${error.message}`);
     }
   };
 
@@ -176,7 +217,7 @@ const Bespoke = () => {
             >
               Send Enquiry
             </button>
-            {status && <p className="text-center text-sm mt-2">{status}</p>}
+            {status && <p className={status.includes('success') ? 'text-green-500 text-center text-sm mt-2' : 'text-red-500 text-center text-sm mt-2'}>{status}</p>}
           </div>
         </div>
         <div className="image-container">

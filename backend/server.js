@@ -6,6 +6,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 // eslint-disable-next-line no-undef
 const dotenv = require('dotenv');
+// eslint-disable-next-line no-undef
+const nodemailer = require('nodemailer');
 
 dotenv.config();
 
@@ -53,6 +55,61 @@ app.delete('/api/users/:id', async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
     res.json({ message: 'User deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Enquiry Model and Routes
+// eslint-disable-next-line no-undef
+const Enquiry = require('./models/Enquiry');
+
+app.post('/api/enquiries', async (req, res) => {
+  try {
+    const { name, companyName, designation, email, countryCode, mobileNo, enquiry } = req.body;
+    const phone = `${countryCode} ${mobileNo}`;
+    const newEnquiry = new Enquiry({ name, company_name: companyName, designation, email, phone, enquiry });
+    await newEnquiry.save();
+
+    // Email configuration (optional fallback if EmailJS fails)
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'ayushibabariya4@gmail.com',
+        pass: 'igmn mubd kfmk iwuo', // Use App Password if 2FA enabled
+      },
+    });
+
+    const mailOptions = {
+      from: 'ayushibabariya4@gmail.com',
+      to: email,
+      cc: 'ayushibabariya4@gmail.com', // Admin notification
+      subject: 'New Art Advisory Enquiry Received',
+      html: `
+        <h3>New Enquiry Received</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Company Name:</strong> ${companyName}</p>
+        <p><strong>Designation:</strong> ${designation}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Enquiry:</strong> ${enquiry}</p>
+        <p><strong>Received On:</strong> ${new Date().toLocaleString()}</p>
+      `,
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.status(201).json({ message: 'Enquiry submitted and email sent successfully' });
+  } catch (err) {
+    console.error('Enquiry save or email error:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+app.get('/api/enquiries', async (req, res) => {
+  try {
+    const enquiries = await Enquiry.find();
+    res.json(enquiries);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });

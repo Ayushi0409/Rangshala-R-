@@ -12,13 +12,15 @@ const nodemailer = require('nodemailer');
 const OTP = require('./models/OTP');
 // eslint-disable-next-line no-undef
 const User = require('./models/User'); // Assuming you have a User model
-
-dotenv.config();
-
 // eslint-disable-next-line no-undef
 const bcrypt = require('bcryptjs'); // Add this for password hashing comparison
 // eslint-disable-next-line no-undef
 const jwt = require('jsonwebtoken'); // Add this for token generation (npm install jsonwebtoken)
+// Add Razorpay require
+// eslint-disable-next-line no-undef
+const Razorpay = require('razorpay');
+
+dotenv.config();
 
 const app = express();
 
@@ -35,6 +37,14 @@ mongoose.connect(process.env.MONGO_URI, {
   console.log('MongoDB connected');
 }).catch((err) => {
   console.log('MongoDB connection error:', err);
+});
+
+// Initialize Razorpay instance
+const razorpay = new Razorpay({
+  // eslint-disable-next-line no-undef
+  key_id: process.env.RAZORPAY_KEY_ID || 'rzp_test_jVqdtFwidymhM3',
+  // eslint-disable-next-line no-undef
+  key_secret: process.env.RAZORPAY_KEY_SECRET || '069pF4H12sdSJRbdZGytcVgE', // Securely store in .env
 });
 
 // Routes
@@ -223,6 +233,74 @@ app.post('/api/auth/login', async (req, res) => {
   } catch (err) {
     console.error('Login error:', err);
     res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
+
+// New /create-order route
+app.post('/create-order', async (req, res) => {
+  try {
+    const { amount, currency } = req.body;
+    const options = {
+      amount: amount * 100, // Convert to paise
+      currency: currency || 'INR',
+      receipt: `receipt_order_${Date.now()}`,
+    };
+    const order = await razorpay.orders.create(options);
+    // eslint-disable-next-line no-undef
+    res.json({ ...order, key_id: process.env.RAZORPAY_KEY_ID || 'rzp_test_jVqdtFwidymhM3' });
+  } catch (err) {
+    console.error('Error creating order:', err);
+    res.status(500).json({ message: 'Failed to create order' });
+  }
+});
+
+// New /verify-payment route
+app.post('/verify-payment', async (req, res) => {
+  try {
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+    // eslint-disable-next-line no-undef
+    const secret = process.env.RAZORPAY_KEY_SECRET || '069pF4H12sdSJRbdZGytcVgE';
+
+    // eslint-disable-next-line no-undef
+    const crypto = require('crypto');
+    const generatedSignature = crypto
+      .createHmac('sha256', secret)
+      .update(razorpay_order_id + '|' + razorpay_payment_id)
+      .digest('hex');
+
+    if (generatedSignature === razorpay_signature) {
+      res.json({ status: 'success', message: 'Payment verified successfully' });
+    } else {
+      res.status(400).json({ status: 'failure', message: 'Invalid payment signature' });
+    }
+  } catch (err) {
+    console.error('Error verifying payment:', err);
+    res.status(500).json({ status: 'failure', message: 'Payment verification failed' });
+  }
+});
+
+// New /save-order route (assuming a new Order model)
+// eslint-disable-next-line no-undef
+const Order = require('./models/Order'); // Create this model if not exists
+app.post('/save-order', async (req, res) => {
+  try {
+    const { country, address, city, state, pinCode, email, phone, paymentDetails } = req.body;
+    const newOrder = new Order({
+      country,
+      address,
+      city,
+      state,
+      pinCode,
+      email,
+      phone,
+      paymentDetails,
+      createdAt: Date.now(),
+    });
+    await newOrder.save();
+    res.json({ success: true, message: 'Order saved successfully' });
+  } catch (err) {
+    console.error('Error saving order:', err);
+    res.status(500).json({ success: false, message: 'Failed to save order' });
   }
 });
 

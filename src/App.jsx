@@ -36,6 +36,7 @@ import AddAnimeDrawings from './components/AddAnimeDrawings';
 import AddDrawing from './components/AddDrawing';
 import ViewEnquiries from './Admin/ViewEnquiries';
 import VerifyOTP from './components/VerifyOTP';
+import Success from './components/Success';
 import './App.css';
 
 const Home = () => (
@@ -93,6 +94,7 @@ function App() {
             <Route path="/artwork-detail" element={<ArtworkDetail />} />
             <Route path="/admin/enquiries" element={<ViewEnquiries />} />
             <Route path="/verify-otp" element={<VerifyOTP />} />
+            <Route path="/success" element={<Success />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

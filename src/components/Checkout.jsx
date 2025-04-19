@@ -1,7 +1,7 @@
-// src/components/Checkout.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../App.css'; // Ensure your CSS matches the .NET styles
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ const Checkout = () => {
     phone: '',
   });
   const [error, setError] = useState(null);
+  const [razorpayLoaded, setRazorpayLoaded] = useState(false);
 
   // Load Razorpay checkout script
   useEffect(() => {
@@ -29,7 +30,9 @@ const Checkout = () => {
     };
 
     loadScript().then((loaded) => {
-      if (!loaded) {
+      if (loaded) {
+        setRazorpayLoaded(true);
+      } else {
         setError('Failed to load Razorpay SDK');
       }
     });
@@ -37,9 +40,7 @@ const Checkout = () => {
     // Cleanup script on component unmount
     return () => {
       const script = document.querySelector('script[src="https://checkout.razorpay.com/v1/checkout.js"]');
-      if (script) {
-        document.body.removeChild(script);
-      }
+      if (script) document.body.removeChild(script);
     };
   }, []);
 
@@ -63,22 +64,28 @@ const Checkout = () => {
       return;
     }
 
+    if (!razorpayLoaded) {
+      setError('Razorpay SDK is not loaded. Please try again.');
+      return;
+    }
+
     try {
       // Call backend to create Razorpay order
       const response = await axios.post('http://localhost:5000/create-order', {
-        amount: 500, // Replace with dynamic amount (in INR)
+        amount: 500, // Replace with dynamic amount (in paise, e.g., 500 = ₹5)
+        currency: 'INR',
       });
 
-      const { id: order_id, amount, currency } = response.data;
+      const { id: order_id, amount, currency, key_id } = response.data;
 
       // Razorpay options
       const options = {
-        // eslint-disable-next-line no-undef
-        key: process.env.REACT_APP_RAZORPAY_KEY_ID, // rzp_test_jVqdtFwidymhM3 (from .env)
-        amount: amount,
+        key: key_id, // Use key_id from backend response
+        amount: amount, // Amount in paise
         currency: currency,
-        name: 'Your Company Name',
-        description: 'Payment for your order',
+        name: 'Rang Shala',
+        description: 'Order Payment',
+        image: '/Images/logo.png', // Optional: Replace with your logo path
         order_id: order_id,
         handler: async (response) => {
           try {
@@ -91,7 +98,11 @@ const Checkout = () => {
 
             if (verifyResponse.data.status === 'success') {
               // Save formData and payment details to your database (via backend API)
-              console.log('Payment successful:', response);
+              const saveResponse = await axios.post('http://localhost:5000/save-order', {
+                ...formData,
+                paymentDetails: verifyResponse.data,
+              });
+              console.log('Order saved:', saveResponse.data);
               navigate('/success'); // Redirect to success page
             } else {
               setError('Payment verification failed');
@@ -101,7 +112,7 @@ const Checkout = () => {
           }
         },
         prefill: {
-          name: formData.name || 'Customer Name',
+          name: 'Customer Name', // Replace with dynamic name if available
           email: formData.email,
           contact: formData.phone,
         },
@@ -109,7 +120,7 @@ const Checkout = () => {
           address: `${formData.address}, ${formData.city}, ${formData.state}, ${formData.country}, ${formData.pinCode}`,
         },
         theme: {
-          color: '#3399cc',
+          color: '#000000',
         },
       };
 
@@ -121,6 +132,7 @@ const Checkout = () => {
       rzp1.open();
     } catch (err) {
       setError('Error creating order: ' + err.message);
+      console.error('Error details:', err);
     }
   };
 

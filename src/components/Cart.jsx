@@ -1,32 +1,30 @@
-// src/components/Cart.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import shreenathji from '../Images/Shreenathji.jpg'; // Import the image to fix display issue
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      title: 'SHREENATHJI',
-      artist: 'Ayushi Babariya',
-      dimensions: '24in x 24in',
-      price: 105000,
-      image: shreenathji, // Use imported image
-      quantity: 1,
-    },
-  ]);
-
+  const [cartItems, setCartItems] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+    setCartItems(savedCart);
+  }, []);
 
   const updateQuantity = (id, newQuantity) => {
     if (newQuantity < 1) return;
-    setCartItems(cartItems.map(item =>
+    const updatedCart = cartItems.map(item =>
       item.id === id ? { ...item, quantity: newQuantity } : item
-    ));
+    );
+    setCartItems(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
   const removeItem = (id) => {
-    setCartItems(cartItems.filter(item => item.id !== id));
+    const updatedCart = cartItems.filter(item => item.id !== id);
+    setCartItems(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
   const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -48,7 +46,7 @@ const Cart = () => {
                 <div className="item-details">
                   <h3 className="item-title">{item.title}</h3>
                   <p className="item-artist">{item.artist}</p>
-                  <p className="item-dimensions">{item.dimensions}</p>
+                  <p className="item-dimensions">24in x 24in</p> {/* Hardcoded for now */}
                   <p className="item-price">INR {item.price.toLocaleString()}</p>
                 </div>
                 <div className="item-actions">

@@ -15,6 +15,11 @@ const User = require('./models/User'); // Assuming you have a User model
 
 dotenv.config();
 
+// eslint-disable-next-line no-undef
+const bcrypt = require('bcryptjs'); // Add this for password hashing comparison
+// eslint-disable-next-line no-undef
+const jwt = require('jsonwebtoken'); // Add this for token generation (npm install jsonwebtoken)
+
 const app = express();
 
 // Middlewares
@@ -197,6 +202,27 @@ app.post('/api/reset-password', async (req, res) => {
   } catch (err) {
     console.error('Password reset error:', err);
     res.status(500).json({ message: 'Failed to reset password' });
+  }
+});
+
+// New /api/auth/login route
+app.post('/api/auth/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ success: false, message: 'Invalid email or password' });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ success: false, message: 'Invalid email or password' });
+    }
+    // eslint-disable-next-line no-undef
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'your-secret-key', { expiresIn: '1h' });
+    res.json({ success: true, message: 'Login successful', token });
+  } catch (err) {
+    console.error('Login error:', err);
+    res.status(500).json({ success: false, message: 'Server error' });
   }
 });
 

@@ -20,7 +20,18 @@ const Login = () => {
       });
 
       if (res.data.success) {
+        // Store token or user data in localStorage
+        localStorage.setItem('token', res.data.token); // Assuming token is returned
         alert(res.data.message);
+
+        // Trigger event to add pending cart item if exists
+        const pendingItem = JSON.parse(localStorage.getItem('pendingCartItem'));
+        if (pendingItem) {
+          const event = new Event('addToCartAfterLogin');
+          window.dispatchEvent(event);
+          localStorage.removeItem('pendingCartItem');
+        }
+
         navigate('/');
       } else {
         alert(res.data.message);

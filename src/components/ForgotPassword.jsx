@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../App.css'; // Fixed import path
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Forgot password request for:', email);
+    setStatus('Sending...');
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/forgot-password', { email });
+      setStatus(response.data.message);
+      if (response.data.message === 'OTP sent to your email') {
+        navigate(`/verify-otp?email=${encodeURIComponent(email)}`);
+      }
+    } catch (error) {
+      console.error('Forgot password error:', error);
+      setStatus(`Failed to send OTP. Error: ${error.response?.data?.message || error.message}`);
+    }
   };
 
   return (
@@ -27,6 +41,7 @@ const ForgotPassword = () => {
           </div>
           <button type="submit">Send Reset Link</button>
         </form>
+        {status && <p className={status.includes('success') ? 'text-green-500 text-center mt-2' : 'text-red-500 text-center mt-2'}>{status}</p>}
         <p className="login-link">
           Back to <Link to="/login">Login</Link>
         </p>

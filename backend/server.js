@@ -32,6 +32,33 @@ app.use('/api/register', require('./routes/register'));
 // eslint-disable-next-line no-undef
 app.use('/api/auth', require('./routes/auth'));
 
+// New route to get all users
+app.get('/api/users', async (req, res) => {
+  try {
+    // eslint-disable-next-line no-undef
+    const users = await require('./models/User').find();
+    res.json(users);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// New route to delete a user
+app.delete('/api/users/:id', async (req, res) => {
+  try {
+    // eslint-disable-next-line no-undef
+    const user = await require('./models/User').findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json({ message: 'User deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

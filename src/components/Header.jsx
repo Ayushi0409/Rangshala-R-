@@ -97,7 +97,7 @@ const Header = () => {
             <Link to="/login"><FaUser style={{ color: 'black' }} /></Link>
           )}
           <Link to="/cart"><FaShoppingCart style={{ color: 'black' }} /></Link>
-          <Link to="/admin"><FaUserCog style={{ color: 'black' }} /></Link>
+          <Link to="/admin-login"><FaUserCog style={{ color: 'black' }} /></Link> {/* Changed to /admin-login */}
         </div>
       </div>
     </header>

@@ -1,8 +1,8 @@
-// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Alert from './components/Alert';
+import Footer from './components/Footer';
 import WelcomeSection from './components/WelcomeSection';
 import FeaturedArtistSection from './components/FeaturedArtistSection';
 import WhyRangShalaSection from './components/WhyRangShalaSection';
@@ -26,13 +26,13 @@ import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
-import AdminLogin from './components/AdminLogin'; // Add this import
-import Footer from './components/Footer';
-import AdminDashboard from './components/AdminDashboard';
+import AdminLogin from './Admin/AdminLogin';
+import AdminDashboard from './Admin/AdminDashboard';
+import AdminCustomers from './Admin/AdminCustomers';
 import AddAcrylicPainting from './components/AddAcrylicPainting';
-import AddOilPainting from './components/AddOilPainting'; // New import
-import AddMandalaArt from './components/AddMandalaArt'; // New import
-import AddAnimeDrawings from './components/AddAnimeDrawings'; // New import
+import AddOilPainting from './components/AddOilPainting';
+import AddMandalaArt from './components/AddMandalaArt';
+import AddAnimeDrawings from './components/AddAnimeDrawings';
 import AddDrawing from './components/AddDrawing';
 import './App.css';
 
@@ -48,7 +48,6 @@ const Home = () => (
 const About = () => <h2>About Us Page</h2>;
 const Search = () => <h2>Search Page</h2>;
 const Profile = () => <h2>Profile Page</h2>;
-const Admin = () => <h2>Admin Panel</h2>;
 const NotFound = () => <h2>404 - Page Not Found</h2>;
 
 function App() {
@@ -74,9 +73,10 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} /> {/* Add this route */}
-            <Route path="/admin" element={<AdminLogin />} /> 
-            <Route path="/admin-dashboard" element={<AdminDashboard />} />  
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/admin-login" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} /> {/* Correct route */}
+            <Route path="/admin/customers" element={<AdminCustomers />} />
             <Route path="/admin/add-acrylic-painting" element={<AddArtworkForm artworkType="Acrylic Painting" />} />
             <Route path="/admin/add-oil-painting" element={<AddArtworkForm artworkType="Oil Painting" />} />
             <Route path="/admin/add-mandala-art" element={<AddArtworkForm artworkType="Mandala Art" />} />
@@ -89,7 +89,6 @@ function App() {
             <Route path="/oil-painting" element={<OilPainting />} />
             <Route path="/artwork-gallery" element={<ArtworkGallery />} />
             <Route path="/artwork-detail" element={<ArtworkDetail />} />
-            
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

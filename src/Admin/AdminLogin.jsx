@@ -1,36 +1,35 @@
 import React, { useState } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
-import logo from '../Images/logo.png'; // Ensure this path is correct
+import logo from '../Images/logo.png'; // Adjusted path
 import { useNavigate } from 'react-router-dom';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false); // Add loading state
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true); // Show loading state
-    setErrorMessage(null); // Clear previous errors
+    setIsLoading(true);
+    setErrorMessage(null);
 
-    // Simulate login logic with a slight delay (mimicking an API call)
     setTimeout(() => {
       if (email === 'admin@example.com' && password === 'password123') {
-        navigate('/admin-dashboard');
+        navigate('/admin/dashboard'); // Changed to match the route in App.jsx
       } else {
         setErrorMessage('Invalid email or password');
       }
       setIsLoading(false);
-    }, 500); // 500ms delay for realism
+    }, 500);
   };
 
   return (
     <div className="admin-login-container">
       <div className="login-card">
         <img src={logo} alt="Rang Shala Logo" className="logo" />
-        <h3>Admin Login</h3>
+        <h3 className="heading">Admin Login</h3>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <FaUser className="input-icon" />
@@ -40,7 +39,8 @@ const AdminLogin = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               required
-              disabled={isLoading} // Disable input during loading
+              disabled={isLoading}
+              className="input"
             />
           </div>
           <div className="input-group">
@@ -51,7 +51,8 @@ const AdminLogin = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               required
-              disabled={isLoading} // Disable input during loading
+              disabled={isLoading}
+              className="input"
             />
           </div>
           <button type="submit" className="login-button" disabled={isLoading}>
@@ -60,7 +61,7 @@ const AdminLogin = () => {
         </form>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <div className="forgot-password">
-          <a href="/forgot-password">Forgot password?</a>
+          <a href="/forgot-password" className="link">Forgot password?</a>
         </div>
       </div>
     </div>

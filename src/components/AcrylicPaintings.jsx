@@ -18,7 +18,7 @@ const AcrylicPaintings = () => {
     { name: 'Ganpati Bappa', artist: 'Niyati Agravat', price: 'INR 700', image: ganpatiBappa },
     { name: 'House Painting', artist: 'Niyati Agravat', price: 'INR 700', image: housePainting },
     { name: 'Sunrise Painting', artist: 'Niyati Agravat', price: 'INR 700', image: sunrisePainting },
-    { name: 'Rainy Day', artist: 'Niyati Agravat', price: 'INR 700', image: rainyDay },
+    { name: 'Rainy Day', artist: 'Niyati Agravat', price: 'INR 0.10', image: rainyDay },
     { name: 'Acraylic', artist: 'Niyati Agravat', price: 'INR 700', image: acraylic },
   ];
 

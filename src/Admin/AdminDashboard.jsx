@@ -6,6 +6,8 @@ import ViewEnquiries from './ViewEnquiries';
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
   const [customers, setCustomers] = useState([]);
+  const [orders, setOrders] = useState([]);
+  const [payments, setPayments] = useState([]);
   const [error, setError] = useState("");
 
   const dashboardData = {
@@ -48,7 +50,39 @@ const AdminDashboard = () => {
         })
         .catch((err) => {
           setError("Failed to fetch customers. Check token/server.");
-          console.error(err);
+          console.error("Customers fetch error:", err.response?.data || err.message);
+        });
+    } else if (activeSection === "orders") {
+      axios
+        .get("http://localhost:5000/api/orders", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
+          },
+        })
+        .then((res) => {
+          setOrders(res.data);
+          setError("");
+          console.log("Orders fetched:", res.data);
+        })
+        .catch((err) => {
+          setError("Failed to fetch orders. Check token/server.");
+          console.error("Orders fetch error:", err.response?.data || err.message);
+        });
+    } else if (activeSection === "payments") {
+      axios
+        .get("http://localhost:5000/api/payments", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
+          },
+        })
+        .then((res) => {
+          setPayments(res.data);
+          setError("");
+          console.log("Payments fetched:", res.data);
+        })
+        .catch((err) => {
+          setError("Failed to fetch payments. Check token/server.");
+          console.error("Payments fetch error:", err.response?.data || err.message);
         });
     }
   }, [activeSection]);
@@ -237,8 +271,84 @@ const AdminDashboard = () => {
             )}
           </>
         )}
-        {activeSection === "orders" && <h2>Orders Section (Coming Soon)</h2>}
-        {activeSection === "payments" && <h2>Payments Section (Coming Soon)</h2>}
+        {activeSection === "orders" && (
+          <>
+            <h2>Order List</h2>
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            {orders.length === 0 ? (
+              <p>No orders found.</p>
+            ) : (
+              <table style={styles.table}>
+                <thead>
+                  <tr>
+                    <th style={styles.th}>Country</th>
+                    <th style={styles.th}>Address</th>
+                    <th style={styles.th}>City</th>
+                    <th style={styles.th}>State</th>
+                    <th style={styles.th}>Pin Code</th>
+                    <th style={styles.th}>Email</th>
+                    <th style={styles.th}>Phone</th>
+                    <th style={styles.th}>Payment ID</th>
+                    <th style={styles.th}>Order Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order) => (
+                    <tr key={order._id}>
+                      <td style={styles.td}>{order.country}</td>
+                      <td style={styles.td}>{order.address}</td>
+                      <td style={styles.td}>{order.city}</td>
+                      <td style={styles.td}>{order.state}</td>
+                      <td style={styles.td}>{order.pinCode}</td>
+                      <td style={styles.td}>{order.email}</td>
+                      <td style={styles.td}>{order.phone}</td>
+                      <td style={styles.td}>{order.paymentDetails?.razorpay_payment_id || 'N/A'}</td>
+                      <td style={styles.td}>
+                        {new Date(order.createdAt).toLocaleDateString()}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </>
+        )}
+        {activeSection === "payments" && (
+          <>
+            <h2>Payment List</h2>
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            {payments.length === 0 ? (
+              <p>No payments found.</p>
+            ) : (
+              <table style={styles.table}>
+                <thead>
+                  <tr>
+                    <th style={styles.th}>Payment ID</th>
+                    <th style={styles.th}>Order ID</th>
+                    <th style={styles.th}>Email</th>
+                    <th style={styles.th}>Amount (₹)</th>
+                    <th style={styles.th}>Status</th>
+                    <th style={styles.th}>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {payments.map((payment) => (
+                    <tr key={payment._id}>
+                      <td style={styles.td}>{payment.paymentId}</td>
+                      <td style={styles.td}>{payment.orderId}</td>
+                      <td style={styles.td}>{payment.email}</td>
+                      <td style={styles.td}>₹{payment.amount}</td>
+                      <td style={styles.td}>{payment.status}</td>
+                      <td style={styles.td}>
+                        {new Date(payment.createdAt).toLocaleDateString()}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </>
+        )}
         {activeSection === "enquiries" && <ViewEnquiries />}
       </div>
     </div>

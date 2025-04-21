@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import oil1 from '../Images/oil1.jpg';
 import oil2 from '../Images/oil2.jpg';
 import oil3 from '../Images/oil3.jpg';
@@ -10,8 +11,10 @@ import oil8 from '../Images/oil8.jpg';
 import oil9 from '../Images/oil9.jpg';
 import oil10 from '../Images/oil10.jpg';
 
-
 const OilPainting = () => {
+  const [cartPendingItem, setCartPendingItem] = useState(null);
+  const navigate = useNavigate();
+
   const artworks = [
     { name: 'Ganpati Bappa', artist: 'Ayushi Babariya', price: 'INR 4500', image: oil1 },
     { name: 'Window Painting', artist: 'Ayushi Babariya', price: 'INR 1000', image: oil2 },
@@ -25,33 +28,35 @@ const OilPainting = () => {
     { name: 'House', artist: 'Ayushi Babariya', price: 'INR 300', image: oil10 },
   ];
 
-  const addToCart = (name, price) => {
-    const itemData = { Name: name, Price: parseFloat(price.replace('INR ', '')) };
-    fetch('/Cart/AddToCart', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify(itemData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          window.location.href = '/Cart/Index';
-        } else {
-          if (data.message.includes('log in')) {
-            window.location.href = '/Account/Login';
-          } else {
-            alert(data.message);
-          }
-        }
-      })
-      .catch((error) => {
-        console.error('Error adding to cart:', error);
-        alert('An error occurred while adding the item to the cart.');
-      });
+  const isLoggedIn = () => !!localStorage.getItem('token');
+
+  const addToCart = (name, price, image) => {
+    if (!isLoggedIn()) {
+      const itemData = { name, price: parseFloat(price.replace('INR ', '')), image };
+      setCartPendingItem(itemData);
+      localStorage.setItem('pendingCartItem', JSON.stringify(itemData));
+      navigate('/login');
+      return;
+    }
+
+    const itemData = { id: Date.now(), title: name, artist: artworks.find(a => a.name === name).artist, price: parseFloat(price.replace('INR ', '')), image, quantity: 1 };
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    cart.push(itemData);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert('Item added to cart successfully!');
   };
+
+  useEffect(() => {
+    const handleAddToCartAfterLogin = () => {
+      if (cartPendingItem && isLoggedIn()) {
+        addToCart(cartPendingItem.name, `INR ${cartPendingItem.price}`, cartPendingItem.image);
+        setCartPendingItem(null);
+        localStorage.removeItem('pendingCartItem');
+      }
+    };
+    window.addEventListener('addToCartAfterLogin', handleAddToCartAfterLogin);
+    return () => window.removeEventListener('addToCartAfterLogin', handleAddToCartAfterLogin);
+  }, [cartPendingItem, isLoggedIn]);
 
   return (
     <div className="acrylic-painting-section">
@@ -67,7 +72,7 @@ const OilPainting = () => {
               <button className="view-btn">View</button>
               <button
                 className="add-to-cart-btn"
-                onClick={() => addToCart(artwork.name, artwork.price)}
+                onClick={() => addToCart(artwork.name, artwork.price, artwork.image)}
               >
                 Add to Cart
               </button>

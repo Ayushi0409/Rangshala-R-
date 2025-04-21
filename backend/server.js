@@ -304,6 +304,37 @@ app.post('/save-order', async (req, res) => {
   }
 });
 
+// New /api/orders route to fetch orders
+app.get('/api/orders', async (req, res) => {
+  try {
+    const orders = await Order.find().sort({ createdAt: -1 }); // Sort by newest first
+    res.json(orders);
+  } catch (err) {
+    console.error('Error fetching orders:', err);
+    res.status(500).json({ message: 'Failed to fetch orders' });
+  }
+});
+
+// New /api/payments route to fetch payment details
+app.get('/api/payments', async (req, res) => {
+  try {
+    const orders = await Order.find().sort({ createdAt: -1 }); // Fetch all orders
+    const payments = orders.map(order => ({
+      _id: order._id,
+      email: order.email,
+      paymentId: order.paymentDetails?.razorpay_payment_id || 'N/A',
+      orderId: order.paymentDetails?.razorpay_order_id || 'N/A',
+      status: order.paymentDetails?.status || 'N/A',
+      amount: order.paymentDetails?.amount / 100 || 0, // Convert paise to rupees
+      createdAt: order.createdAt,
+    }));
+    res.json(payments);
+  } catch (err) {
+    console.error('Error fetching payments:', err);
+    res.status(500).json({ message: 'Failed to fetch payments' });
+  }
+});
+
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

@@ -70,9 +70,18 @@ const Checkout = () => {
     }
 
     try {
+      // Calculate total amount from cart
+      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0) * 100; // Convert to paise
+
+      if (totalAmount === 0) {
+        setError('Cart is empty. Please add items before checkout.');
+        return;
+      }
+
       // Call backend to create Razorpay order
       const response = await axios.post('http://localhost:5000/create-order', {
-        amount: 500, // Replace with dynamic amount (in paise, e.g., 500 = ₹5)
+        amount: totalAmount, // Dynamic amount in paise
         currency: 'INR',
       });
 
@@ -80,16 +89,15 @@ const Checkout = () => {
 
       // Razorpay options
       const options = {
-        key: key_id, // Use key_id from backend response
-        amount: amount, // Amount in paise
+        key: key_id,
+        amount: amount,
         currency: currency,
         name: 'Rang Shala',
         description: 'Order Payment',
-        image: '/Images/logo.png', // Optional: Replace with your logo path
+        image: '/Images/logo.png',
         order_id: order_id,
         handler: async (response) => {
           try {
-            // Verify payment on backend
             const verifyResponse = await axios.post('http://localhost:5000/verify-payment', {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
@@ -97,13 +105,14 @@ const Checkout = () => {
             });
 
             if (verifyResponse.data.status === 'success') {
-              // Save formData and payment details to your database (via backend API)
               const saveResponse = await axios.post('http://localhost:5000/save-order', {
                 ...formData,
                 paymentDetails: verifyResponse.data,
               });
               console.log('Order saved:', saveResponse.data);
-              navigate('/success'); // Redirect to success page
+              // Clear cart after successful payment
+              localStorage.setItem('cart', JSON.stringify([]));
+              navigate('/success');
             } else {
               setError('Payment verification failed');
             }
@@ -112,7 +121,7 @@ const Checkout = () => {
           }
         },
         prefill: {
-          name: 'Customer Name', // Replace with dynamic name if available
+          name: 'Customer Name',
           email: formData.email,
           contact: formData.phone,
         },
@@ -124,7 +133,6 @@ const Checkout = () => {
         },
       };
 
-      // Open Razorpay checkout
       const rzp1 = new window.Razorpay(options);
       rzp1.on('payment.failed', (response) => {
         setError('Payment failed: ' + response.error.description);
